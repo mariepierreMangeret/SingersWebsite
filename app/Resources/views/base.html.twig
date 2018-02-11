@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Noémie Beaujean{% endblock %}</title>
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('css/base.css') }}"/>
         {% endblock %}
@@ -10,9 +10,31 @@
     </head>
     <body>
         <header>
-            <h1>Hello!</h1>
+            <nav>
+                {% include '::navbar-top.html.twig' %}
+            </nav>
         </header>
+        <canvas id="my_canvas" width="350" height="120">Texte alternatif pour les navigateurs ne supportant pas canvas.</canvas>
+
+        <div id="title_header">
+            <a href="Index.php"><h1>Noémie Beaujean</h1></a>
+        </div>
+        
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        
+        <footer>
+            <div id="social_network">
+                <a href="https://www.facebook.com" target="_blank"><img src="{{ asset('img/logo_facebook.png') }}" alt="facebook"/></a>
+                <h5>Facebook</h5>
+                <a href="https://www.instagram.com" target="_blank"><img src="{{ asset('img/logo_instagram.png') }}" alt="instagram"/></a>
+                <h5>Instagram</h5>  
+            </div>
+            
+            <h6>No&eacute;mie Beaujean &copy; All Right Reserved.</h6>
+        </footer>
+
+        {% block javascripts %}
+            <script src="{{ asset('js/mycanvas.js') }}"></script>
+        {% endblock %}
     </body>
 </html>

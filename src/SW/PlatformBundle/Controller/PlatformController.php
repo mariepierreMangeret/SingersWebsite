@@ -4,10 +4,10 @@ namespace SW\PlatformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
+class PlatformController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SWPlatformBundle:Default:index.html.twig');
+        return $this->render('SWPlatformBundle::index.html.twig');
     }
 }

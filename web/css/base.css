@@ -1,4 +1,129 @@
-h1
-{
-	color:red;
+/*FONT*/
+@font-face {
+	font-family: 'Camille';
+    src: url('../font/Mademoiselle-Camille-L.ttf');
+}
+
+@font-face {
+   	font-family: 'OSCLight';
+    src: url('../font/OpenSans-CondLight.ttf');
+}
+
+@font-face {
+   	font-family: 'League';
+    src: url('../font/LeagueGothic-Regular.otf');
+}
+
+/*BODY*/
+body {
+	background-color:#e1e1e1;
+	margin:0;
+}
+
+/*HEADER, NAV, MAIN TITLE*/
+header {
+	background-color:black;
+	border-bottom:5px solid white;
+	height:40px;
+}
+
+nav {	
+	display: flex;
+	justify-content: center;
+}
+
+nav ul {	
+	list-style-type: none;
+	display: flex;
+	justify-content: center;
+	margin:10px;	
+}
+
+nav li {
+    margin-right: 30px;
+}
+
+nav a {
+	font-family:'OSCLight',Arial;
+	font-size:16px;
+	color: #ffffff;
+	text-transform: uppercase;
+	text-decoration:none;	
+}
+
+nav a:hover {
+	opacity: 0.8;	
+}
+
+#title_header h1 {
+	font-family:'Camille',Arial;
+	font-size:60px;
+	color: #ffffff;
+	font-weight: normal;
+	position:absolute;
+	top:-15px;
+	width:100%;
+	text-align:center;
+	z-index:3;
+}
+
+#title_header h1:hover {
+	opacity: 0.8;
+}
+
+/*MY CANVAS*/
+#my_canvas {
+	margin-left: auto;
+    margin-right: auto;
+    display: block;
+	margin-top:-5px;
+	position:relative;
+	z-index:2;
+}
+
+/*FOOTER*/
+footer {
+	background-color:black;
+	height: 100px;
+	width:100%;
+	border-top: 5px solid white;
+	margin-top: 10px;
+	position:relative;
+	bottom:0;
+}
+
+#social_network {
+	display:flex;
+	justify-content:center;
+	align-items: center;
+}
+
+#social_network img {
+	width:18px;
+	height:18px;
+	padding-right:5px;
+	padding-left:5px;
+	margin-top:18px;
+}
+
+footer h5 {
+	font-family:'OSCLight',Arial;
+	font-size:15px;
+	color: #ffffff;
+	font-weight: normal;
+	text-transform: uppercase;
+	padding-right:5px;
+	font-weight:bold;
+	margin-bottom:10px;
+}
+
+footer h6 {
+	font-family:'OSCLight',Arial;
+	font-size:10px;
+	color: #ffffff;
+	font-weight: normal;
+	text-transform: uppercase;
+	width:100%;
+	text-align:center;
+	margin-top:5px;
 }

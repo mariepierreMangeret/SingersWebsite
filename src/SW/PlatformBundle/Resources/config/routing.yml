@@ -1,3 +1,3 @@
 sw_platform_homepage:
     path:     /
-    defaults: { _controller: SWPlatformBundle:Default:index }
+    defaults: { _controller: SWPlatformBundle:Platform:index }
