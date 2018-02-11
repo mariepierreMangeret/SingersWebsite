@@ -1,0 +1,4 @@
+sw_platform:
+    resource: "@SWPlatformBundle/Resources/config/routing.yml"
+    prefix:   /
+
