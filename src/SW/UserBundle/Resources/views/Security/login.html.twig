@@ -1,0 +1,34 @@
+{% extends "SWUserBundle::layout.html.twig" %}
+{% block body %}
+
+<link rel="stylesheet" href="{{ asset('css/connection.css') }}"/>
+
+<div class="banner_second">
+    <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+</div>
+
+<div class="wrap_form">
+  <form method="post" action="{{ path('fos_user_security_check') }}"  >
+    <h2>authentification</h2>
+    <table>
+        <tr>
+            <td>login :</td>
+            <td>
+            	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+            	<input type="text" name="_username" value="{{ last_username }}" required="required" class="input"/>
+            </td>
+        </tr>
+        <tr>
+            <td>mot de passe :</td>
+            <td><input type="password" name="_password" class="input"/></td>
+        </tr>
+        <tr>
+            <td colspan="2" >         
+              <input type="submit" name="_submit" value="Connexion" class="button"/>
+          </td>
+        </tr>
+    </table>
+  </form>
+</div>
+
+{% endblock %}

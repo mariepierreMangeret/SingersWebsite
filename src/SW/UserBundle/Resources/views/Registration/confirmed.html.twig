@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Inscription - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/connection.css') }}"/>
+
+    <div class="banner_second">
+        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    </div>
+
+	<section>
+    	<h2>Félicitations {{ user.username }}, votre compte est maintenant activé.</h2>  
+  	
+    	<p><a href="{{ path('sw_platform_home') }}"> &rarr;	 Retour à la page d'accueil</a></p>
+
+
+	</section>
+{% endblock %}

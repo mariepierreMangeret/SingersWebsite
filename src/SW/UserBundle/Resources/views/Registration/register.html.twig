@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Inscription - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/connection.css') }}"/>
+
+    <div class="banner_second">
+        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    </div>
+
+    <div class="wrap_form">
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+        <form action="{{ path('fos_user_registration_register') }}" method="post">
+            <h2>inscription</h2>
+            <table>
+                <tr>
+                    <td>{{ form_label(form.username, "Pseudo") }}</td>
+                    <td>{{ form_widget(form.username, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.lastname, "Nom") }}</td>
+                    <td>{{ form_widget(form.lastname, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.firstname, "Prenom") }}</td>
+                    <td>{{ form_widget(form.firstname, {'attr': {'class': 'input'}}) }}</td> 
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.plainPassword.first, "Mot de passe") }}</td>
+                    <td>{{ form_widget(form.plainPassword.first, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.plainPassword.second, "Confirmation du mot de passe") }}</td>
+                    <td>{{ form_widget(form.plainPassword.second, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(form.email, "Adresse email") }}</td>
+                    <td>{{ form_widget(form.email, {'attr': {'class': 'input'}}) }}</td></td>
+                </tr>
+                <tr>
+                    <td colspan="2" ><input class="button" type="submit" name="inscription" value="inscription" /></td>
+                </tr>
+            </table>
+        {{ form_rest(form) }}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

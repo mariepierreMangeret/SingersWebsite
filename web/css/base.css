@@ -1,3 +1,8 @@
+p {
+	font-family: arial;
+	font-size:12px;
+}
+
 /*FONT*/
 @font-face {
 	font-family: 'Camille';
@@ -20,6 +25,12 @@ body {
 	margin:0;
 }
 
+#wrap {
+	width: 1000px;
+	margin :0 auto;
+}
+
+
 /*HEADER, NAV, MAIN TITLE*/
 header {
 	background-color:black;
@@ -33,13 +44,13 @@ nav {
 }
 
 nav ul {	
-	list-style-type: none;
 	display: flex;
 	justify-content: center;
 	margin:10px;	
 }
 
 nav li {
+	list-style-type: none;
     margin-right: 30px;
 }
 
@@ -69,6 +80,11 @@ nav a:hover {
 
 #title_header h1:hover {
 	opacity: 0.8;
+}
+
+#icon_connection {
+	width: 13px;
+	height: 13px;
 }
 
 /*MY CANVAS*/

@@ -14,13 +14,15 @@
                 {% include '::navbar-top.html.twig' %}
             </nav>
         </header>
-        <canvas id="my_canvas" width="350" height="120">Texte alternatif pour les navigateurs ne supportant pas canvas.</canvas>
+        <canvas id="my_canvas" width="350" height="60">Texte alternatif pour les navigateurs ne supportant pas canvas.</canvas>
 
         <div id="title_header">
             <a href="Index.php"><h1>Noémie Beaujean</h1></a>
         </div>
-        
+
+        <div id="wrap">
         {% block body %}{% endblock %}
+        </div>
         
         <footer>
             <div id="social_network">

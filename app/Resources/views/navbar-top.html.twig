@@ -6,4 +6,14 @@
     <li><a href="#">Fanclub</a></li>
     <li><a href="#">Boutique</a></li>
     <li><a href="#">Contact</a></li>
+
+	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+	    <li><a href="#">Profil</a></li>
+	    <li><a href="{{ path('fos_user_security_logout') }}"><img id="icon_connection" src="{{ asset('img/icon_connection.png') }}" alt="icon_connection"/> Déconnexion</a></li>
+
+	{% else %}
+	    <li><a href="{{ path('fos_user_security_login') }}"><img id="icon_connection" src="{{ asset('img/icon_connection.png') }}" alt="icon_connection"/> Connexion</a></li>
+        <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+	{% endif %}
 </ul>
+
