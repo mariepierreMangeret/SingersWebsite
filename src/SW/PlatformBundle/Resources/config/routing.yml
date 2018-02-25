@@ -2,3 +2,9 @@ sw_platform_home:
     path:     /
     defaults: { 
         _controller: SWPlatformBundle:Platform:index }
+
+sw_platform_contact:
+    path:     /contact 
+    defaults: {
+        _controller: SWPlatformBundle:Platform:contact }
+        

@@ -1,0 +1,48 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Contact - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<link rel="stylesheet" href="{{ asset('css/contact.css') }}"/>
+
+	<div class="banner_second">
+        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    </div>
+
+
+    <section>
+    
+        {% for message in app.session.flashbag.get('notice') %}
+            <p class="alert alert-success">{{ message }}</p> 
+        {% endfor %}
+
+    	{{ form_start(form) }}
+        {{ form_errors(form) }}
+        <form method="post" action="{{ path('sw_platform_contact') }}" >
+        	
+
+            <label for="fullname"><h2>{{ form_label(form.name) }}</h2></label><br/>
+            {{ form_widget(form.name, {'attr': {'class': 'input'}}) }} <br/>
+            
+
+            <label for="mail"><h2>{{ form_label(form.email) }}</h2></label><br/>
+            {{ form_widget(form.email, {'attr': {'class': 'input'}}) }} <br/>
+            
+
+            <label for="subject"><h2>{{ form_label(form.subject) }}</h2></label><br/>
+            {{ form_widget(form.subject, {'attr': {'class': 'input'}}) }} <br/>
+            
+      
+            <label for="message"><h2>{{ form_label(form.message) }}</h2></label><br/>
+            {{ form_widget(form.message, {'attr': {'class': 'input'}}) }} <br/>
+            
+            <input class="button" type="submit" name="Send" value="Envoyer"/>
+    		{{ form_rest(form) }}
+        	{{ form_end(form) }}
+
+        </form>
+    </section>
+{% endblock %}
