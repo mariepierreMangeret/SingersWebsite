@@ -18,6 +18,7 @@ class AppKernel extends Kernel
             new SW\PlatformBundle\SWPlatformBundle(),
             new SW\UserBundle\SWUserBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

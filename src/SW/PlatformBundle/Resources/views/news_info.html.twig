@@ -1,0 +1,30 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Nouveautés - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/news_info.css') }}"/>
+
+	<div class="banner_second">
+        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    </div>
+
+    <div class="nav_second">
+        <ul>
+            <li>
+                <a href="{{ path('sw_platform_news') }}">Retour</a>
+            </li>
+        </ul>        
+    </div>
+
+ 		<section>
+	        <h2>{{ news.subject }}</h2>
+
+	        <span>{{ news.date|date("m/d/Y") }}</span>
+
+	        <p>{{ news.message }}</p>
+	    </section>
+
+{% endblock %}

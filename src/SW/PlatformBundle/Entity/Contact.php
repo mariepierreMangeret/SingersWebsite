@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints\Email;
 /**
  * Contact
  *
- * @ORM\Table(name="contact")
+ * @ORM\Table(name="sw_contact")
  * @ORM\Entity(repositoryClass="SW\PlatformBundle\Repository\ContactRepository")
  */
 class Contact

@@ -6,6 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use SW\PlatformBundle\Entity\Contact;
 use SW\PlatformBundle\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
+use SW\PlatformBundle\Entity\News;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 
 class PlatformController extends Controller
 {
@@ -47,21 +50,5 @@ class PlatformController extends Controller
             'form' => $form->createView()
         ));
     }
-
-    private function sendEmail($data){
-        $myappContactMail = 'mangeret.mariepierre@gmail.com';
-        $myappContactPassword = '1fa0486ac0435b';
-        
-        $transport = \Swift_SmtpTransport::newInstance('smtp.mailtrap.io', 2525)->setUsername('812b85f4da636c')->setPassword('1fa0486ac0435b');
-
-        $mailer = \Swift_Mailer::newInstance($transport);
-        $message = \Swift_Message::newInstance($data["subject"])
-        ->setFrom(array($myappContactMail => "Message de ".$data["name"]))
-        ->setTo(array(
-            $myappContactMail => $myappContactMail
-        ))
-        ->setBody($data["message"]."<br/> Envoyé par :".$data["email"]);
-        
-        return $mailer->send($message);
-    }
 }
+

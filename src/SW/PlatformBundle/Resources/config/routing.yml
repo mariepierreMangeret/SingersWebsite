@@ -7,4 +7,17 @@ sw_platform_contact:
     path:     /contact 
     defaults: {
         _controller: SWPlatformBundle:Platform:contact }
-        
+
+sw_platform_news:
+    path:     /news/{page}
+    defaults: { 
+        _controller: SWPlatformBundle:News:news, page: 1  } 
+    requirements:
+        page: \d*      
+
+sw_platform_news_info:
+    path:     /news-info/{id}
+    defaults: { 
+        _controller: SWPlatformBundle:News:view }   
+    requirements:
+        id: \d+
