@@ -1,0 +1,41 @@
+.banner_second {
+	text-align: center;
+	margin-bottom:50px;
+}
+
+section {
+	background-color: #ffffff;
+	width: 760px;
+	margin:auto;
+	padding:20px;
+	position:relative;
+}
+
+h2 {
+	font-family:'OSCLight',Arial;
+	font-size:25px;
+	border-bottom:1px solid #b9b9b9;
+	text-transform: uppercase;
+}
+
+p, td {
+	font-family: arial;
+	font-size:12px;
+}
+
+.table_year {
+	width: 50px;
+	text-align: center;
+	font-weight: bold;	
+}
+
+.arrow_bottom {
+	width: 30px;
+	height: 30px;
+	position:absolute;
+	right:20px;
+}
+
+.panel:not(#panel_1) {
+    display: none;
+}

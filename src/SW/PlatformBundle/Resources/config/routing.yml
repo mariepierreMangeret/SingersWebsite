@@ -21,3 +21,8 @@ sw_platform_news_info:
         _controller: SWPlatformBundle:News:view }   
     requirements:
         id: \d+
+
+sw_platform_biography:
+    path:     /biography 
+    defaults: {
+        _controller: SWPlatformBundle:Platform:biography }

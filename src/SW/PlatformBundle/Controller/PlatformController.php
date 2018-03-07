@@ -7,6 +7,8 @@ use SW\PlatformBundle\Entity\Contact;
 use SW\PlatformBundle\Form\ContactType;
 use Symfony\Component\HttpFoundation\Request;
 use SW\PlatformBundle\Entity\News;
+use SW\PlatformBundle\Entity\Section;
+use SW\PlatformBundle\Entity\Experience;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
@@ -50,5 +52,20 @@ class PlatformController extends Controller
             'form' => $form->createView()
         ));
     }
+
+    public function biographyAction(Request $request)
+    {
+        $sections = $this
+              ->getDoctrine()
+              ->getManager()
+              ->getRepository('SWPlatformBundle:Section')
+              ->findAll();
+
+        return $this->render('SWPlatformBundle::biography.html.twig', array(
+              'sections'      => $sections, 
+
+        ));
+    }
+
 }
 

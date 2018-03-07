@@ -1,0 +1,45 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Biographie - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<link rel="stylesheet" href="{{ asset('css/biography.css') }}"/>
+
+
+	<div class="banner_second">
+        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    </div>
+
+
+    <section>
+        {% for section in sections %}
+            {% if section.title != 'information' %}
+                <h2>
+                    {{ section.title }}
+                    <img id="flip_{{ section.id }}" class="flip arrow_bottom" src="{{ asset('img/arrow.png') }}" alt="imgarrow"/>
+                </h2>
+            {% endif %}
+
+            <table id="panel_{{ section.id }}" class="panel">
+                {% for experience in section.getExperiences() %}
+                    <tr>
+                        {% if section.title != 'information' %}
+                            <td class="table_year">{{ experience.date|date("m/Y") }}</td>
+                        {% endif %}
+                        <td>{{ experience.entitled }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+             
+        {% endfor %}
+    </section>
+
+    {% block javascripts %}
+        <script src="{{ asset('js/slider.js') }}"></script>
+        <script src="{{ asset('js/mycanvas.js') }}"></script>
+    {% endblock %}
+   <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+{% endblock %}
