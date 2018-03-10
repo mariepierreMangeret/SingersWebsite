@@ -26,3 +26,17 @@ sw_platform_biography:
     path:     /biography 
     defaults: {
         _controller: SWPlatformBundle:Platform:biography }
+
+sw_platform_discography:
+    path:     /discography/{id}
+    defaults: {
+        _controller: SWPlatformBundle:Discography:discography }
+    requirements:
+        id: \d+
+
+sw_platform_discography_info:
+    path:     /discography-info/{id}
+    defaults: {
+        _controller: SWPlatformBundle:Discography:view }
+    requirements:
+        id: \d+

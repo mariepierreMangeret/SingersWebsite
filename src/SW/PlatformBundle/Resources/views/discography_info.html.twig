@@ -1,0 +1,55 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Discographie - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<link rel="stylesheet" href="{{ asset('css/discography_info.css') }}"/>
+
+
+	<div class="banner_second">
+        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    </div>
+
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="{{ path('sw_platform_discography', {'id': 1 }) }}">Retour</a>
+            </li>
+        </ul>        
+    </div>
+
+    <section>
+        <h2>{{ discs.title }}</h2>
+
+        <div id="wrap_info">
+            <aside>
+                <img src="{{ asset('img/cd1.png') }}" alt="cd"/>
+                <button type="button">Acheter</button> 
+            </aside>
+
+            <article>
+                <table>
+                    <tr>
+                        <th colspan="2">Titre</th>
+                    </tr>
+                    {% for disc in discs.getSongs() %}
+                        <tr>
+                            <td class="table_id">01</td>
+                            <td class="table_title">{{ disc.title }}</td>
+                        </tr>
+                    {% endfor %}  
+                </table>
+            </article>
+
+        </div>
+
+        <h2>Informations</h2>
+        <p>{{ discs.information }}</p>
+    </section>
+
+
+{% endblock %}
+

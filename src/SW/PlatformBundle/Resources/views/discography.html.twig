@@ -1,0 +1,37 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Discographie - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<link rel="stylesheet" href="{{ asset('css/discography.css') }}"/>
+
+
+	<div class="banner_second">
+        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    </div>
+
+    <div class="navigation">
+        <ul>
+            {% for typedisc in typediscs %}
+                <li>
+                    <a href="{{ path('sw_platform_discography', {'id': typedisc.id   }) }}">{{ typedisc.title }}</a>
+                </li>
+            {% endfor %}  
+        </ul>
+    </div>
+
+    <section>
+        <div id="discography_img">
+            {% for disc in discs %}
+                <a href="{{ path('sw_platform_discography_info', {'id': disc.id   }) }}"><img src="{{ asset('img/single45.jpg') }}" alt="cd"/></a>
+            {% endfor %}
+        </div>
+        
+    </section>
+
+
+{% endblock %}
+
