@@ -10,13 +10,28 @@ use SW\PlatformBundle\Entity\News;
 use SW\PlatformBundle\Entity\Section;
 use SW\PlatformBundle\Entity\Experience;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 
 class PlatformController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render('SWPlatformBundle::index.html.twig');
+        $nbPerPage = 4;
+
+        $news = $this
+          ->getDoctrine()
+          ->getManager()
+          ->getRepository('SWPlatformBundle:News')
+          ->myNewsIndex($nbPerPage);
+
+
+        
+        return $this->render('SWPlatformBundle::index.html.twig', array(
+              'news'      => $news,
+ 
+
+        ));
     }
 
     public function contactAction(Request $request)

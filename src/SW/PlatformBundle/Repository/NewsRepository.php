@@ -24,4 +24,15 @@ class NewsRepository extends \Doctrine\ORM\EntityRepository
 
 		return new Paginator($query, true);
 	}
+
+	public function myNewsIndex($nbPerPage) {
+   		$query = $this->_em->createQuery('
+			SELECT n FROM SWPlatformBundle:News n
+			ORDER BY n.id DESC ');
+
+   		$query
+		->setMaxResults($nbPerPage);
+
+   		return ($query->getResult());
+	}
 }

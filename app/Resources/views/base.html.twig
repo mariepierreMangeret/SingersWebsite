@@ -17,7 +17,7 @@
         <canvas id="my_canvas" width="350" height="60">Texte alternatif pour les navigateurs ne supportant pas canvas.</canvas>
 
         <div id="title_header">
-            <a href="Index.php"><h1>Noémie Beaujean</h1></a>
+            <a href="{{ path('sw_platform_home') }}"><h1>Noémie Beaujean</h1></a>
         </div>
 
         <div id="wrap">
@@ -26,9 +26,14 @@
         
         <footer>
             <div id="social_network">
-                <a href="https://www.facebook.com" target="_blank"><img src="{{ asset('img/logo_facebook.png') }}" alt="facebook"/></a>
+                <a href="https://www.facebook.com/NoemieBeaujean" target="_blank">
+                    <img src="{{ asset('img/logo_facebook.png') }}" alt="facebook"/>
+                </a>
                 <h5>Facebook</h5>
-                <a href="https://www.instagram.com" target="_blank"><img src="{{ asset('img/logo_instagram.png') }}" alt="instagram"/></a>
+                
+                <a href="https://www.instagram.com/noemie__beaujean" target="_blank">
+                    <img src="{{ asset('img/logo_instagram.png') }}" alt="instagram"/>
+                </a>
                 <h5>Instagram</h5>  
             </div>
             
