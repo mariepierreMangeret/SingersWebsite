@@ -1,0 +1,38 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Blog - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/blog.css') }}"/>
+
+	<div class="banner_second">
+        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    </div>
+
+ 	{% for blog in blogs %}
+ 		<section>
+	        <h2>{{ blog.title }}</h2>
+
+	        <span>{{ blog.created|date("m/d/Y") }}</span>
+
+	        <p>{{ blog.blog|slice(0, 250) ~ '...' }}</p>
+            <!-- a voir ? -->
+	       <a href="{{ path('sw_blog_show', {'page': 1, 'id': blog.id}) }}"><button type="button">Lire la suite</button></a>
+
+	    </section>
+	{% endfor %}
+
+
+    <div class="pagination">
+        <ul>
+            {% for p in range(1, nbPages) %}
+                <li>
+                    <a href="{{ path('sw_blog_home', {'page': p}) }}">{{ p }}</a>
+                </li>
+            {% endfor %}
+        </ul>        
+    </div>
+
+{% endblock %}

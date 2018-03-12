@@ -44,6 +44,13 @@ class User extends BaseUser
     protected $firstname;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
+
+    /**
      * Get firstname
      *
      * @return string
@@ -89,5 +96,29 @@ class User extends BaseUser
         $this->firstname = $firstname;
 
         return $this;
+    }
+    
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Blog
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

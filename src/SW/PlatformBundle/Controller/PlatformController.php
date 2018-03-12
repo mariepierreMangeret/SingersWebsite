@@ -25,11 +25,8 @@ class PlatformController extends Controller
           ->getRepository('SWPlatformBundle:News')
           ->myNewsIndex($nbPerPage);
 
-
-        
         return $this->render('SWPlatformBundle::index.html.twig', array(
               'news'      => $news,
- 
 
         ));
     }

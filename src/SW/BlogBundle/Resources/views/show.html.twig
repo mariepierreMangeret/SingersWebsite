@@ -1,0 +1,90 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Blog - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<link rel="stylesheet" href="{{ asset('css/blog_info.css') }}"/>
+
+	<div class="nav_second">
+        <ul>
+            <li>
+                <a href="{{ path('sw_blog_home') }}">Retour</a>
+            </li>
+        </ul>        
+    </div>
+    <!-- Contenu de l'article -->
+	<section>
+		<h2>{{ blog.title }}</h2>
+
+        <img src="{{ asset(['img/', blog.image]|join) }}" alt="{{ blog.title }} image not found" class="large" />
+        <div class="blog_text">
+            <p>{{ blog.blog }}</p>
+        </div>
+        <span>Publié le {{ blog.created|date('m/d/Y') }}</span>
+	</section>
+
+    <!-- Commentaires -->
+    <section class="comment">
+        <h2>Commentaires ({{comments|length }})</h2>
+
+        {% for comment in comments %}
+            <table>
+                <tr>
+                    <td rowspan="3" class="table_image">
+                        <img src="{{ asset(['img/', comment.getUser().getImage()]|join) }}" alt="image not found" class="default_user_picture" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>{{ comment.user|upper }}</span></td>
+                    <td class="table_datetime">
+                        Le <span>{{ comment.created|date('m/d/Y') }}</span> à <span>{{ comment.created|date('H:i:s') }}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="table_comment">
+                        {{ comment.comment }}
+                    </td>
+                </tr>
+                
+            </table>
+        {% else %}
+            <p>Aucun commentaire pour cette publication. Soyez le premier à commenter...</p>
+        {% endfor %}
+    </section>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <ul>
+            {% for p in range(1, nbPages) %}
+                <li>
+                    <a href="{{ path('sw_blog_show', {'id': blog.id, 'page': p}) }}">{{ p }}</a>
+                </li>
+            {% endfor %}
+        </ul>        
+    </div>
+
+    <!-- Formulaire commentaire -->
+    <section>
+        <h2>Ajouter un commentaire</h2>
+        {% if app.user %}
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+            <form method="post" action="{{ path('sw_blog_show', {'id': blog.id, 'page': 1 }) }}" >
+
+                {{ form_widget(form.comment, {'attr': {'class': 'input'}}) }} <br/>
+                
+                <input class="button" type="submit" name="Send" value="Envoyer"/>
+                {{ form_rest(form) }}
+                {{ form_end(form) }}
+
+            </form>
+         {% else %}
+            <p>Pour écrire un commentaire vous devez vous <a href="{{ path('fos_user_security_login') }}">connecter</a>. Pas encore <a href="{{ path('fos_user_registration_register') }}">inscrit</a> ?
+            </p>
+         {% endif %}
+
+
+    </section>
+{% endblock %}

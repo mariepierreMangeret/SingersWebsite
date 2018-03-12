@@ -1,0 +1,167 @@
+/*NAVIGATION*/
+.nav_second {
+	position : relative;
+	left:60px;
+}
+
+.nav_second  li {
+	list-style-type: none;
+	margin:0 auto;	
+}
+
+.nav_second  a {
+	font-family:'OSCLight',Arial;
+	font-size:20px;
+	color: #000000;
+	text-transform: uppercase;
+	text-decoration:none;	
+	font-weight: bold;	
+	background-color: #ffffff;
+	border:1px solid #ffffff;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.nav_second  a:hover {
+	background-color: #000000;
+	border:1px solid #000000;
+	color: #ffffff;
+}
+
+/*SECTION*/
+section {
+	background-color: #ffffff;
+	width: 760px;
+	margin:auto;
+	padding:20px;
+	position:relative;
+	padding-top:2px;
+	margin-bottom:15px;
+}
+
+section img { 
+	width: 190px; 
+	float: left; 
+	padding: 5px; 
+	border: 1px solid #ccc; 
+	margin: 0 10px 10px 0; 
+}
+
+section .large { 
+	width: 200px; 
+	border: none;
+}
+
+h2 {
+	font-family:'OSCLight',Arial;
+	font-size:25px;
+	border-bottom:1px solid #b9b9b9;
+	text-transform: uppercase;
+}
+
+span {
+	font-family: arial;
+	font-size:12px;
+	font-weight: bold;
+}
+
+.blog_text {
+	text-align: justify;
+}
+
+.comment {
+	margin-bottom: 0;
+}
+
+/*FORMULAIRE COMMENTAIRES*/
+input, textarea {
+	font-family: arial;
+	font-size:12px;
+	border:none;
+	border-bottom:#b9b9b9 1px solid;
+
+}
+textarea {
+	width : 100%;
+	height: 40px;
+}
+
+.button {
+	font-family:'OSCLight',Arial;
+	font-size:20px;
+	text-transform: uppercase;
+	background-color: #ffffff;
+	border:#b9b9b9 1px solid;
+	margin-top: 20px;
+}
+
+.button:hover {
+	background-color: #000000;
+	color: #ffffff;
+}
+
+/*AFFICHAGE DES COMMENTAIRES*/
+.default_user_picture { 
+	width: 50px; 
+	border-radius :50px;
+	border: none;
+}
+
+table {
+	width: 100%;
+	border-bottom:1px solid #EDEDED;
+	margin-bottom: 10px;
+}
+
+.table_image {
+	width: 50px;
+}
+
+td {
+	font-family: arial;
+	font-size:12px;
+}
+
+.table_datetime {
+	text-align: right;
+	height: 20px;
+}
+
+.table_comment {
+	border-top:1px solid #DFDFDF;
+}
+
+/*PAGINATION*/
+.pagination {
+	position : relative;
+	left:60px;
+}
+
+.pagination ul {
+	display: inline-block;
+}
+
+.pagination li {
+	list-style-type: none;
+	margin:0 auto;	
+	display: inline;
+}
+
+.pagination a {
+	font-family:'OSCLight',Arial;
+	font-size:20px;
+	color: #000000;
+	text-transform: uppercase;
+	text-decoration:none;	
+	font-weight: bold;	
+	background-color: #ffffff;
+	border:1px solid #ffffff;
+	padding-right: 5px;
+	padding-left: 5px;
+}
+
+.pagination a:hover {
+	background-color: #000000;
+	border:1px solid #000000;
+	color: #ffffff;
+}

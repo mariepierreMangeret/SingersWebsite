@@ -1,0 +1,15 @@
+sw_blog_home:
+    path:     /blog/{page}
+    defaults: { 
+      _controller: SWBlogBundle:Blog:index, page: 1  }
+    requirements:
+      page: \d*   
+
+sw_blog_show:
+    path:  /blog-info/{id}/{page}
+    defaults: { 
+      _controller: SWBlogBundle:Blog:show  }
+    requirements:
+        id: \d+
+        page: \d*   
+
