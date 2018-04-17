@@ -40,3 +40,10 @@ sw_platform_discography_info:
         _controller: SWPlatformBundle:Discography:view }
     requirements:
         id: \d+
+
+sw_platform_profile:
+    path:     /profil/{id}
+    defaults: {
+        _controller: SWPlatformBundle:Platform:profile }
+    requirements:
+        id: \d+

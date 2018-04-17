@@ -4,7 +4,9 @@ namespace SW\PlatformBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use SW\PlatformBundle\Entity\Contact;
+use SW\UserBundle\Entity\User;
 use SW\PlatformBundle\Form\ContactType;
+use SW\PlatformBundle\Form\ProfileType;
 use Symfony\Component\HttpFoundation\Request;
 use SW\PlatformBundle\Entity\News;
 use SW\PlatformBundle\Entity\Section;
@@ -68,10 +70,10 @@ class PlatformController extends Controller
     public function biographyAction(Request $request)
     {
         $sections = $this
-              ->getDoctrine()
-              ->getManager()
-              ->getRepository('SWPlatformBundle:Section')
-              ->findAll();
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SWPlatformBundle:Section')
+            ->findAll();
 
         return $this->render('SWPlatformBundle::biography.html.twig', array(
               'sections'      => $sections, 
@@ -79,5 +81,31 @@ class PlatformController extends Controller
         ));
     }
 
-}
+    public function profileAction(Request $request, $id)
+    {
+        $profile = $this
+            ->getDoctrine()
+            ->getManager()
+            ->getRepository('SWUserBundle:User')
+            ->find($id);
 
+        if (null === $profile) {
+            throw new NotFoundHttpException("Le profil n'existe pas.");
+        }
+
+        $form = $this->createForm('SW\PlatformBundle\Form\ProfileType', $profile);
+
+        if ($form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', 'Modification bien enregistré');
+
+            return $this->redirect($this->generateUrl('sw_platform_profile', array('id' => $profile->getId())));
+        }
+
+        return $this->render('SWPlatformBundle::profile.html.twig', array(
+              'profile'      => $profile, 
+              'form'         => $form->createView(),
+        )); 
+    }
+}

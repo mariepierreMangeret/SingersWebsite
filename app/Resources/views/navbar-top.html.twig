@@ -3,12 +3,11 @@
     <li><a href="{{ path('sw_platform_biography') }}">Biographie</a></li>
     <li><a href="{{ path('sw_platform_discography', {'id': 1 }) }}">Discographie</a></li>        
     <li><a href="{{ path('sw_blog_home') }}">Blog</a></li>
-    <li><a href="#">Fanclub</a></li>
     <li><a href="#">Boutique</a></li>
     <li><a href="{{ path('sw_platform_contact') }}">Contact</a></li>
 
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-	    <li><a href="#">Profil</a></li>
+	    <li><a href="{{ path('sw_platform_profile', {'id': app.user.id }) }}">Profil</a></li>
 	    <li><a href="{{ path('fos_user_security_logout') }}"><img id="icon_connection" src="{{ asset('img/icon_connection.png') }}" alt="icon_connection"/> Déconnexion</a></li>
 
 	{% else %}

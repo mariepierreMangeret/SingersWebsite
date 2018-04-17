@@ -46,7 +46,42 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="adress", type="string", length=255, nullable=true)
+     */
+    private $adress;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="postalcode", type="float", nullable=true)
+     */
+    private $postalcode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
@@ -103,7 +138,7 @@ class User extends BaseUser
      *
      * @param string $image
      *
-     * @return Blog
+     * @return User
      */
     public function setImage($image)
     {
@@ -120,5 +155,125 @@ class User extends BaseUser
     public function getImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Set adress
+     *
+     * @param string $adress
+     *
+     * @return User
+     */
+    public function setAdress($adress)
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Get adress
+     *
+     * @return string
+     */
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+
+    /**
+     * Set postalcode
+     *
+     * @param float $postalcode
+     *
+     * @return User
+     */
+    public function setPostalcode($postalcode)
+    {
+        $this->postalcode = $postalcode;
+
+        return $this;
+    }
+
+    /**
+     * Get postalcode
+     *
+     * @return float
+     */
+    public function getPostalcode()
+    {
+        return $this->postalcode;
+    }
+
+    /**
+     * Set city
+     *
+     * @param string $city
+     *
+     * @return User
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    /**
+     * Get city
+     *
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * Set country
+     *
+     * @param string $country
+     *
+     * @return User
+     */
+    public function setCountry($country)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 }

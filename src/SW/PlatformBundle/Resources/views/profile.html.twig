@@ -1,0 +1,80 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Profil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <link rel="stylesheet" href="{{ asset('css/profil.css') }}"/>
+
+    <section>
+        <h2>Editer mon profil</h2>
+
+        {% for message in app.session.flashbag.get('notice') %}
+            <p class="alert alert-success">{{ message }}</p> 
+        {% endfor %}
+
+    	{{ form_start(form) }}
+        {{ form_errors(form) }}
+        <form method="post" action="{{ path('sw_platform_profile', {'id': profile.getId()}) }}" >
+            <table>
+                <tr>
+                    <td colspan="2"><h2>Informations du compte</h2></td>
+                <tr>
+
+                <tr>
+                    <td>{{ form_label(form.lastname, "Nom") }}</td>
+                    <td>{{ form_widget(form.lastname, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_label(form.firstname, "Prenom") }}</td>
+                    <td>{{ form_widget(form.firstname, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_label(form.email) }}</td>
+                    <td>{{ form_widget(form.email, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><h2>Informations personnelles</h2></td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_label(form.adress, "Adresse") }}</td>
+                    <td>{{ form_widget(form.adress, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_label(form.postalcode, "Code Postal") }}</td>
+                    <td>{{ form_widget(form.postalcode, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_label(form.city, "Ville") }}</td>
+                    <td>{{ form_widget(form.city, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_label(form.country, "Pays") }}</td>
+                    <td>{{ form_widget(form.country, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+
+                <tr>
+                    <td>{{ form_label(form.phone, "Telephone") }}</td>
+                    <td>{{ form_widget(form.phone, {'attr': {'class': 'input'}}) }}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><input class="button" type="submit" name="Send" value="Modifier"/></td>
+                </tr>
+            </table>
+    	{{ form_rest(form) }}
+        {{ form_end(form) }}
+
+        </form>
+        
+    </section>
+{% endblock %}
