@@ -50,7 +50,7 @@ class BlogController extends Controller {
             ->getDoctrine()
             ->getManager()
             ->getRepository('SWBlogBundle:Comment')
-            ->myComments($page, $nbPerPage);
+            ->myComments($id, $page, $nbPerPage);
 
         $nbPages = ceil(count($comments)/$nbPerPage);
 
@@ -82,8 +82,8 @@ class BlogController extends Controller {
             $em->flush();
 
             return $this->redirect($this->generateUrl('sw_blog_show', array(
-                'id' => $comment->getBlog()->getId())) .
-                '#comment-' . $comment->getId()
+                'id' => $comment->getBlog()->getId(),'page' => $page)) .
+                '#comment-' . $comment->getId() 
             );
         }
 

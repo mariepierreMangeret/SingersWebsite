@@ -34,7 +34,7 @@ class Blog
     /**
      * @var string
      *
-     * @ORM\Column(name="author", type="string", length=100)
+     * @ORM\Column(name="author", type="string", length=100, nullable=true)
      */
     private $author;
 
@@ -48,14 +48,14 @@ class Blog
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="string", length=255)
+     * @ORM\Column(name="image", type="string", length=255, nullable=true)
      */
     private $image;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tags", type="text")
+     * @ORM\Column(name="tags", type="text", nullable=true)
      */
     private $tags;
 
@@ -70,6 +70,14 @@ class Blog
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="blog")
      */
     private $comments;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="draft", type="boolean")
+     */
+    private $draft = false;
+
 
     /**
      * Get id
@@ -225,6 +233,30 @@ class Blog
         return $this->created;
     }
 
+    /**
+     * Set draft
+     *
+     * @param bool $draft
+     *
+     * @return Blog
+     */
+    public function setDraft($draft)
+    {
+        $this->draft = $draft;
+
+        return $this;
+    }
+
+    /**
+     * Get draft
+     *
+     * @return bool
+     */
+    public function getDraft()
+    {
+        return $this->draft;
+    }
+
     public function addComment(Comment $comment)
     {
         $this->comments[] = $comment;
@@ -242,10 +274,10 @@ class Blog
         $this->setCreated(new \DateTime());
     }
 
-    public function __toString()
+    /**public function __toString()
     {
         return $this->getTitle();
-    }
+    }**/
 
 }
 

@@ -99,5 +99,29 @@ class Experience
     {
         return $this->date;
     }
+
+    /**
+     * Set section
+     *
+     * @param \SW\PlatformBundle\Entity\Section $section
+     *
+     * @return Experience
+     */
+    public function setSection(\SW\PlatformBundle\Entity\Section $section = null)
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+    /**
+     * Get section
+     *
+     * @return \SW\PlatformBundle\Entity\Section
+     */
+    public function getSection()
+    {
+        return $this->section;
+    }
 }
 

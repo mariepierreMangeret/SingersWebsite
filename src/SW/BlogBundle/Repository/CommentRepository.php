@@ -12,10 +12,12 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  * repository methods below.
  */
 class CommentRepository extends \Doctrine\ORM\EntityRepository {  
-    public function myComments($page, $nbPerPage) {
+    public function myComments($idBlog, $page, $nbPerPage) {
         $query = $this->_em->createQuery('
         SELECT n FROM SWBlogBundle:Comment n
-        ORDER BY n.id DESC');
+        WHERE n.blog = :idBlog
+        ORDER BY n.id DESC')
+        -> setParameter('idBlog', $idBlog);
 
     $query
     ->setFirstResult(($page-1) * $nbPerPage)

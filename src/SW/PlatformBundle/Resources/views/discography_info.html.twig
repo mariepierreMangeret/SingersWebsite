@@ -22,7 +22,7 @@
     </div>
 
     <section>
-        <h2>{{ discs.title }}</h2>
+        <h2>{{ disc.title }}</h2>
 
         <div id="wrap_info">
             <aside>
@@ -35,10 +35,10 @@
                     <tr>
                         <th colspan="2">Titre</th>
                     </tr>
-                    {% for disc in discs.getSongs() %}
+                    {% for songDisc in disc.getSongs() %}
                         <tr>
-                            <td class="table_id">01</td>
-                            <td class="table_title">{{ disc.title }}</td>
+                            <td class="table_id">{{ loop.index }}</td> 
+                            <td class="table_title">{{ songDisc.getSong().title }}</td>
                         </tr>
                     {% endfor %}  
                 </table>
@@ -47,7 +47,7 @@
         </div>
 
         <h2>Informations</h2>
-        <p>{{ discs.information }}</p>
+        <p>{{ disc.information|nl2br }}</p>
     </section>
 
 

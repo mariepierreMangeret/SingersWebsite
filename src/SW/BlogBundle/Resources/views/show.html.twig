@@ -27,9 +27,9 @@
 
     <!-- Commentaires -->
     <section class="comment">
-        <h2>Commentaires ({{comments|length }})</h2>
+        <h2>Commentaires ({{blog.getComments|length }})</h2>
 
-        {% for comment in comments %}
+        {% for comment in comments%}
             <table>
                 <tr>
                     <td rowspan="3" class="table_image">

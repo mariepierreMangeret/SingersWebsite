@@ -86,6 +86,13 @@ class User extends BaseUser
     private $image;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="ban", type="boolean")
+     */
+    private $ban = false;
+
+    /**
      * Get firstname
      *
      * @return string
@@ -275,5 +282,29 @@ class User extends BaseUser
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set ban
+     *
+     * @param bool $ban
+     *
+     * @return User
+     */
+    public function setBan($ban)
+    {
+        $this->ban = $ban;
+
+        return $this;
+    }
+
+    /**
+     * Get ban
+     *
+     * @return bool
+     */
+    public function getBan()
+    {
+        return $this->ban;
     }
 }

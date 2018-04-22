@@ -24,7 +24,7 @@ class DiscographyController extends Controller
               ->getManager()
               ->getRepository('SWPlatformBundle:Disc')
               ->findByTypedisc($id);
-
+              
       
         return $this->render('SWPlatformBundle::discography.html.twig', array(
               'typediscs'      => $typediscs, 
@@ -33,10 +33,10 @@ class DiscographyController extends Controller
         ));
     }
 
-    public function viewAction(Disc $discs) 
+    public function viewAction(Disc $disc) 
     {
         return $this->render('SWPlatformBundle::discography_info.html.twig', array(
-            'discs' =>  $discs,   
+            'disc' =>  $disc,   
         ));
     }
 }

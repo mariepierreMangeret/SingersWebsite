@@ -31,7 +31,7 @@ class Disc
     /**
      * @var string
      *
-     * @ORM\Column(name="image", type="blob")
+     * @ORM\Column(name="image", type="blob", nullable=true)
      */
     private $image;
 
@@ -49,7 +49,8 @@ class Disc
     private $typedisc;
 
     /**
-     * @ORM\ManyToMany(targetEntity="SW\PlatformBundle\Entity\Song", mappedBy="discs")
+     * @var \Doctrine\Common\Collections\Collection
+     * @ORM\OneToMany(targetEntity="SW\PlatformBundle\Entity\SongDisc", mappedBy="disc", cascade={"remove","persist"})
      */
     private $songs;
 
@@ -172,13 +173,14 @@ class Disc
     /**
      * Add song
      *
-     * @param \SW\PlatformBundle\Entity\Disc $song
+     * @param \SW\PlatformBundle\Entity\SongDisc $song
      *
      * @return Disc
      */
-    public function addSong(\SW\PlatformBundle\Entity\Disc $song)
+    public function addSong(\SW\PlatformBundle\Entity\SongDisc $song)
     {
         $this->songs[] = $song;
+        $song->setDisc($this);
 
         return $this;
     }

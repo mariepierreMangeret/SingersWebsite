@@ -11,7 +11,7 @@ parameters:
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: { fallbacks: ['%locale%'] }
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -33,6 +33,7 @@ framework:
     assets: ~
     php_errors:
         log: true
+
 
 # Twig Configuration
 twig:
@@ -80,3 +81,10 @@ fos_user:
         form:
              type: SW\UserBundle\Form\RegistrationType
    
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]

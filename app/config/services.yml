@@ -4,8 +4,67 @@ parameters:
     #parameter_name: value
 
 services:
-     user.form.registration:
+    user.form.registration:
         class: SW\UserBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: app_user_registration }
 
+    admin.blog:
+        class: SW\BlogBundle\Admin\BlogPostAdmin
+        arguments: [~, SW\BlogBundle\Entity\Blog, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Article, group: Blog }
+
+    admin.comment:
+        class: SW\BlogBundle\Admin\CommentAdmin
+        arguments: [~, SW\BlogBundle\Entity\Comment, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Commentaire, group: Blog }
+
+    admin.news:
+        class: SW\PlatformBundle\Admin\NewsAdmin
+        arguments: [~, SW\PlatformBundle\Entity\News, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Nouveautés, group: Nouveautes }
+
+    admin.section:
+        class: SW\PlatformBundle\Admin\SectionAdmin
+        arguments: [~, SW\PlatformBundle\Entity\Section, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Section, group: Biographie }
+
+    admin.experience:
+        class: SW\PlatformBundle\Admin\ExperienceAdmin
+        arguments: [~, SW\PlatformBundle\Entity\Experience, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Experience, group: Biographie }
+
+    admin.song:
+        class: SW\PlatformBundle\Admin\SongAdmin
+        arguments: [~, SW\PlatformBundle\Entity\Song, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Musique, group: Discographie }
+
+    admin.typedisc:
+        class: SW\PlatformBundle\Admin\TypeDiscAdmin
+        arguments: [~, SW\PlatformBundle\Entity\TypeDisc, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Categorie, group: Discographie }
+
+    admin.disc:
+        class: SW\PlatformBundle\Admin\DiscAdmin
+        arguments: [~, SW\PlatformBundle\Entity\Disc, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Disque, group: Discographie }
+
+    admin.songdisc:
+        class: SW\PlatformBundle\Admin\SongDiscAdmin
+        arguments: [~, SW\PlatformBundle\Entity\SongDisc, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: songdisc, group: Discographie }
+
+    admin.user:
+        class: SW\UserBundle\Admin\UserAdmin
+        arguments: [~, SW\UserBundle\Entity\User, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: utilisateur, group: Utilisateur }

@@ -24,7 +24,7 @@
 
         <span>{{ news.date|date("m/d/Y") }}</span>
 
-        <p>{{ news.message }}</p>
+        <p>{{ news.message|nl2br}}</p>
     </section>
 
 {% endblock %}

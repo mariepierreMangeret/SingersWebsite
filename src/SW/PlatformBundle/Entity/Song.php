@@ -29,12 +29,6 @@ class Song
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity="SW\PlatformBundle\Entity\Disc", inversedBy="songs")
-     */
-    private $discs;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -67,45 +61,9 @@ class Song
     {
         return $this->title;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->discs = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
-    /**
-     * Add disc
-     *
-     * @param \SW\PlatformBundle\Entity\Disc $disc
-     *
-     * @return Song
-     */
-    public function addDisc(\SW\PlatformBundle\Entity\Disc $disc)
+    public function __toString()
     {
-        $this->discs[] = $disc;
-
-        return $this;
-    }
-
-    /**
-     * Remove disc
-     *
-     * @param \SW\PlatformBundle\Entity\Disc $disc
-     */
-    public function removeDisc(\SW\PlatformBundle\Entity\Disc $disc)
-    {
-        $this->discs->removeElement($disc);
-    }
-
-    /**
-     * Get discs
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDiscs()
-    {
-        return $this->discs;
+        return (string) $this->getTitle();
     }
 }
