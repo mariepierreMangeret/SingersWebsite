@@ -7,46 +7,64 @@
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/connection.css') }}"/>
 
-    <div class="banner_second">
-        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    <!-- start intro section -->
+    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
+                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end intro section -->
+
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Inscription</div>
+            <h5 class="margin-10px-bottom font-weight-300">Veuillez remplir le formulaire vous inscrire</h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
     </div>
 
+
+
+
+    <div class="blogs">
+        <div class="col-lg-6 center-col padding-20px-top">
+            <div class="sm-padding-50px-tb sm-no-padding-lr" style="padding:30px;">
+                
     <div class="wrap_form">
         {{ form_start(form) }}
         {{ form_errors(form) }}
-        <form action="{{ path('fos_user_registration_register') }}" method="post">
-            <h2>inscription</h2>
-            <table>
-                <tr>
-                    <td>{{ form_label(form.username, "Pseudo") }}</td>
-                    <td>{{ form_widget(form.username, {'attr': {'class': 'input'}}) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form_label(form.lastname, "Nom") }}</td>
-                    <td>{{ form_widget(form.lastname, {'attr': {'class': 'input'}}) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form_label(form.firstname, "Prenom") }}</td>
-                    <td>{{ form_widget(form.firstname, {'attr': {'class': 'input'}}) }}</td> 
-                </tr>
-                <tr>
-                    <td>{{ form_label(form.plainPassword.first, "Mot de passe") }}</td>
-                    <td>{{ form_widget(form.plainPassword.first, {'attr': {'class': 'input'}}) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form_label(form.plainPassword.second, "Confirmation du mot de passe") }}</td>
-                    <td>{{ form_widget(form.plainPassword.second, {'attr': {'class': 'input'}}) }}</td>
-                </tr>
-                <tr>
-                    <td>{{ form_label(form.email, "Adresse email") }}</td>
-                    <td>{{ form_widget(form.email, {'attr': {'class': 'input'}}) }}</td></td>
-                </tr>
-                <tr>
-                    <td colspan="2" ><input class="button" type="submit" name="inscription" value="inscription" /></td>
-                </tr>
-            </table>
+        <form id="contactForm" method="post" class="contact-form wow fadeInUp" data-wow-duration="0.6s" action="{{ path('fos_user_registration_register') }}">
+            <div class="row">
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    {{ form_widget(form.lastname, {'attr': {'class': 'input','placeholder': "Nom"}}) }}
+                </div>
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    {{ form_widget(form.firstname, {'attr': {'class': 'input','placeholder': "Prenom"}}) }}
+                </div>
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    {{ form_widget(form.username, {'attr': {'class': 'input','placeholder': "Pseudo"}}) }}
+                </div>
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    {{ form_widget(form.email, {'attr': {'class': 'input','placeholder': "Adresse email"}}) }}
+                </div>
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'input','placeholder': "Mot de passe"}}) }}
+                </div>
+                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'input','placeholder': "Confirmation du mot de passe"}}) }}
+                </div>
+                <div class="col-md-12 text-center wow fadeInUp" data-wow-delay="0.8s">
+                    <input class="btn" name="inscription" type="submit" value="Valider mon inscription">
+                </div>
+            </div>
         {{ form_rest(form) }}
         {{ form_end(form) }}
     </div>
+
+    </div></div></div>
 
 {% endblock %}

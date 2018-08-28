@@ -8,30 +8,60 @@
 
 	<link rel="stylesheet" href="{{ asset('css/discography.css') }}"/>
 
-
-	<div class="banner_second">
-        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
-    </div>
-
-    <div class="navigation">
-        <ul>
-            {% for typedisc in typediscs %}
-                <li>
-                    <a href="{{ path('sw_platform_discography', {'id': typedisc.id   }) }}">{{ typedisc.title }}</a>
-                </li>
-            {% endfor %}  
-        </ul>
-    </div>
-
-    <section>
-        <div id="discography_img">
-            {% for disc in discs %}
-                <a href="{{ path('sw_platform_discography_info', {'id': disc.id   }) }}"><img src="{{ asset('img/single45.jpg') }}" alt="cd"/></a>
-            {% endfor %}
+	<!-- start intro section -->
+    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
+                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
+                </div>
+            </div>
         </div>
-        
     </section>
+    <!-- end intro section -->
+
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Discographie</div>
+            <h5 class="margin-10px-bottom font-weight-300">Toute la discographie</h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
+    </div>
 
 
+    <!--  Start Disco Section -->
+    <section class="blogs">
+        <div class="container">
+            <div class="row">
+                <!--  start Disco left-->
+                <div class="col-md-12 xs-margin-30px-bottom">
+                    <div class="posts">
+                        <div class="pagination text-uppercase wow fadeInUp">
+                            <ul>
+                                {% for typedisc in typediscs %}
+                                    <li>
+                                        <a href="{{ path('sw_platform_discography', {'id': typedisc.id   }) }}">{{ typedisc.title }}</a>
+                                    </li>
+                                {% endfor %}  
+                            </ul>
+                        </div>
+                        <!-- start post -->
+                        <div class="post margin-30px-top">
+                            <div class="content">
+                                <div class="post-cont wow fadeInUp" data-wow-duration="0.4s">
+                                    {% for disc in discs %}
+                                        <a href="{{ path('sw_platform_discography_info', {'id': disc.id   }) }}"><img src="{{ asset('img/single45.jpg') }}" style="margin:3px" alt="cd"/></a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end post -->
+                    </div>
+                </div>
+                <!--  end Disco left-->
+            </div>
+        </div>
+    </section>
+    <!--  End Disco Section -->
 {% endblock %}
 

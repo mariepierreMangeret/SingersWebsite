@@ -7,15 +7,34 @@
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/connection.css') }}"/>
 
-    <div class="banner_second">
-        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+    <!-- start intro section -->
+    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
+                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end intro section -->
+
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Confirmation</div>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
     </div>
 
-	<section>
-    	<h2>Félicitations {{ user.username }}, votre compte est maintenant activé.</h2>  
-  	
-    	<p><a href="{{ path('sw_platform_home') }}"> &rarr;	 Retour à la page d'accueil</a></p>
-
-
+	<div class="blogs">
+        <div class="col-lg-8 center-col text-center wow fadeInUp">
+            <div class="sm-padding-50px-tb sm-no-padding-lr" style="padding:30px;">
+                    <h5 class="margin-10px-bottom font-weight-300">Félicitations {{ user.username }}, votre compte est maintenant activé.</h5>
+                	<p>           	
+                	   <a href="{{ path('sw_platform_home') }}"> &rarr;	 Retour à la page d'accueil</a>
+                    </p>
+            </div>
+        </div>
+    </div>
 	</section>
 {% endblock %}

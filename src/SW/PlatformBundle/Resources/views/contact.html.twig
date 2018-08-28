@@ -8,41 +8,72 @@
 
 	<link rel="stylesheet" href="{{ asset('css/contact.css') }}"/>
 
-	<div class="banner_second">
-        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
+	<!-- start intro section -->
+    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
+                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end intro section -->
+
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Contact</div>
+            <h5 class="margin-10px-bottom font-weight-300">Veuillez remplir le formulaire pour me contacter</h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
     </div>
 
+    <!-- start contact -->
+    <div class="blogs">
+        <div class="col-lg-8 center-col padding-20px-top">
+            <div class="sm-padding-50px-tb sm-no-padding-lr" style="padding:30px;">
+                {% for message in app.session.flashbag.get('notice') %}
+                    <p class="alert alert-success">{{ message }}</p> 
+                {% endfor %}
 
-    <section>
-    
-        {% for message in app.session.flashbag.get('notice') %}
-            <p class="alert alert-success">{{ message }}</p> 
-        {% endfor %}
+                <div class="no-margin-lr" id="success-contact-form" style="display: none;"></div>
 
-    	{{ form_start(form) }}
-        {{ form_errors(form) }}
-        <form method="post" action="{{ path('sw_platform_contact') }}" >
-        	
+                {% if form is defined %}
+                    {{ form_start(form) }}
+                    {{ form_errors(form) }}
+                        <form id="contactForm" method="post" class="contact-form wow fadeInUp" data-wow-duration="0.6s" action="{{ path('sw_platform_home') }}">
+                            <div class="row">
+                                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                                    {{ form_widget(form.name, {'attr': {'class': 'input'}}) }}
+                                </div>
+                                <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                                    {{ form_widget(form.email, {'attr': {'class': 'input'}}) }}
+                                </div>
+                                <div class="col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+                                    {{ form_widget(form.subject, {'attr': {'class': 'input'}}) }}
+                                </div>
+                                <div class="col-md-12 wow fadeInUp" data-wow-delay="0.6s">
+                                    {{ form_widget(form.message, {'attr': {'class': 'input'}}) }}
+                                </div>
+                                <div class="col-md-12 text-center wow fadeInUp" data-wow-delay="0.8s">
+                                    <input class="btn" name="Send" type="submit" value="Envoyer">
+                                </div>
+                            </div>
+                            {{ form_rest(form) }}
+                            {{ form_end(form) }}
+                        </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- end contact -->
 
-            <label for="fullname"><h2>{{ form_label(form.name) }}</h2></label><br/>
-            {{ form_widget(form.name, {'attr': {'class': 'input'}}) }} <br/>
-            
 
-            <label for="mail"><h2>{{ form_label(form.email) }}</h2></label><br/>
-            {{ form_widget(form.email, {'attr': {'class': 'input'}}) }} <br/>
-            
 
-            <label for="subject"><h2>{{ form_label(form.subject) }}</h2></label><br/>
-            {{ form_widget(form.subject, {'attr': {'class': 'input'}}) }} <br/>
-            
-      
-            <label for="message"><h2>{{ form_label(form.message) }}</h2></label><br/>
-            {{ form_widget(form.message, {'attr': {'class': 'input'}}) }} <br/>
-            
-            <input class="button" type="submit" name="Send" value="Envoyer"/>
-    		{{ form_rest(form) }}
-        	{{ form_end(form) }}
 
-        </form>
-    </section>
+
+
+
+
+
 {% endblock %}

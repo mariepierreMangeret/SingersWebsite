@@ -1,34 +1,52 @@
 {% extends "SWUserBundle::layout.html.twig" %}
 {% block body %}
 
-<link rel="stylesheet" href="{{ asset('css/connection.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/connection.css') }}"/>
 
-<div class="banner_second">
-    <img src="{{ asset('img/biography.png') }}" alt="banner"/>
-</div>
+    <!-- start intro section -->
+    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
+                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end intro section -->
 
-<div class="wrap_form">
-  <form method="post" action="{{ path('fos_user_security_check') }}"  >
-    <h2>authentification</h2>
-    <table>
-        <tr>
-            <td>login :</td>
-            <td>
-            	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            	<input type="text" name="_username" value="{{ last_username }}" required="required" class="input"/>
-            </td>
-        </tr>
-        <tr>
-            <td>mot de passe :</td>
-            <td><input type="password" name="_password" class="input"/></td>
-        </tr>
-        <tr>
-            <td colspan="2" >         
-              <input type="submit" name="_submit" value="Connexion" class="button"/>
-          </td>
-        </tr>
-    </table>
-  </form>
-</div>
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Authentification</div>
+            <h5 class="margin-10px-bottom font-weight-300">Veuillez remplir le formulaire pour vous connecter</h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
+    </div>
 
+    <!-- start login -->
+    <div class="blogs">
+        <div class="col-lg-4 center-col padding-20px-top">
+            <div class="sm-padding-50px-tb sm-no-padding-lr" style="padding:30px;">
+                <div class="no-margin-lr" id="success-contact-form" style="display: none;"></div>
+
+
+                    <form id="contactForm" method="post" class="contact-form wow fadeInUp" data-wow-duration="0.6s" action="{{ path('fos_user_security_check') }}">
+                        <div class="row">
+                            <div class="col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                                <input type="text" name="_username" value="{{ last_username }}" required="required" class="input" placeholder="Login"/>
+                            </div> 
+                            <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                                <input type="password" name="_password" class="input" placeholder="Mot de passe"/>
+                            </div>
+                            <div class="col-md-12 text-center wow fadeInUp" data-wow-delay="0.8s">
+                                <input class="btn" name="Send" type="submit" value="Connexion">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end login -->
 {% endblock %}

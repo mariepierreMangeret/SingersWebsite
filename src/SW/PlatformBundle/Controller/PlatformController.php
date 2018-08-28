@@ -19,7 +19,7 @@ class PlatformController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $nbPerPage = 4;
+        $nbPerPage = 3;
 
         $news = $this
           ->getDoctrine()

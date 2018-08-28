@@ -1,17 +1,17 @@
-<ul>
-    <li><a href="{{ path('sw_platform_news') }}">Nouveautés</a></li>
-    <li><a href="{{ path('sw_platform_biography') }}">Biographie</a></li>
-    <li><a href="{{ path('sw_platform_discography', {'id': 1 }) }}">Discographie</a></li>        
-    <li><a href="{{ path('sw_blog_home') }}">Blog</a></li>
-    <li><a href="#">Boutique</a></li>
-    <li><a href="{{ path('sw_platform_contact') }}">Contact</a></li>
+<ul class="navbar-nav ml-auto">
+    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_news') }}">Nouveautés</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_biography') }}">Biographie</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_discography', {'id': 1 }) }}">Discographie</a></li>        
+    <li class="nav-item"><a class="nav-link" href="{{ path('sw_blog_home') }}">Blog</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Boutique</a></li>
+    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_contact') }}">Contact</a></li>
 
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-	    <li><a href="{{ path('sw_platform_profile', {'id': app.user.id }) }}">Profil</a></li>
-	    <li><a href="{{ path('fos_user_security_logout') }}"><img id="icon_connection" src="{{ asset('img/icon_connection.png') }}" alt="icon_connection"/> Déconnexion</a></li>
+	    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_profile', {'id': app.user.id }) }}">Profil</a></li>
+	    <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
 
 	{% else %}
-	    <li><a href="{{ path('fos_user_security_login') }}"><img id="icon_connection" src="{{ asset('img/icon_connection.png') }}" alt="icon_connection"/> Connexion</a></li>
-        <li><a href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+	    <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
 	{% endif %}
 </ul>

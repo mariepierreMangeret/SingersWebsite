@@ -6,40 +6,81 @@
 
 {% block body %}
 
-	<link rel="stylesheet" href="{{ asset('css/biography.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/biography.css') }}"/>
 
-
-	<div class="banner_second">
-        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
-    </div>
-
-
-    <section>
-        {% for section in sections %}
-            {% if section.title != 'information' %}
-                <h2>
-                    {{ section.title }}
-                    <img id="flip_{{ section.id }}" class="flip arrow_bottom" src="{{ asset('img/arrow.png') }}" alt="imgarrow"/>
-                </h2>
-            {% endif %}
-
-            <table id="panel_{{ section.id }}" class="panel">
-                {% for experience in section.getExperiences() %}
-                    <tr>
-                        {% if section.title != 'information' %}
-                            <td class="table_year">{{ experience.date|date("m/Y") }}</td>
-                        {% endif %}
-                        <td>{{ experience.entitled }}</td>
-                    </tr>
-                {% endfor %}
-            </table>
-             
-        {% endfor %}
+    <!-- start intro section -->
+    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
+                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
+                </div>
+            </div>
+        </div>
     </section>
+    <!-- end intro section -->
 
-    {% block javascripts %}
-        <script src="{{ asset('js/slider.js') }}"></script>
-        <script src="{{ asset('js/mycanvas.js') }}"></script>
-    {% endblock %}
-   <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+    <div class="bio">
+        <div class="container-fluid">
+            <div class="row" data-scroll-index="6">
+                <!-- start recruit -->
+                <div class="col-8 center-col">
+            
+                    <div class="sm-padding-50px-tb sm-no-padding-lr text-center " style="padding:30px;">
+                        <div class="wow fadeInUp">
+                            <div class="alt-font margin-5px-bottom text-uppercase letter-spacing-1" style="color:#3C7CDD;">Biographie</div>
+                            <h5 class="font-weight-300 margin-10px-bottom">Toutes les informations</h5>
+                            <div class="margin-30px-bottom sm-margin-40px-bottom xs-margin-30px-bottom separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+                        </div>
+
+                        <div class="wow fadeInUp">
+                            {% for section in sections %}
+                                <table>
+                                    {% for experience in section.getExperiences() %}
+                                        <tr>
+                                            {% if section.title == 'information' %}
+                                               <td style="padding-left:10px;">{{ experience.entitled }}</td> 
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                </table>      
+                            {% endfor %}
+                        </div>
+
+                        <div id="Dicorion" class="Dicorion-style">
+                            {% for section in sections %}
+                                <div class="card wow fadeInUp">
+                                    <div class="card-header" id="heading{{ loop.index }}">
+                                        {% if section.title != 'information' %}
+                                            <h5 class="mb-0">
+                                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{ loop.index }}" aria-expanded="false" aria-controls="collapse{{ loop.index }}" style="background-color:#F7F7F7!important;">
+                                                    {{ section.title }}
+                                                </button>
+                                            </h5>
+                                             {% endif %}
+                                    </div>
+                                    <div id="collapse{{ loop.index }}" class="collapse" aria-labelledby="heading{{ loop.index }}" data-parent="#Dicorion">
+                                            <div class="card-body" style="background-color:white;">
+                                                {% for experience in section.getExperiences() %}
+                                                    <table>
+                                                        <tr>
+                                                            {% if section.title != 'information' %}</td>
+                                                                <td class="table_year">{{ experience.date|date("m/Y") }}</td>
+                                                                <td>{{ experience.entitled }}
+                                                            {% endif %}
+                                                        </tr>
+                                                    </table>
+                                                {% endfor %}
+                                            </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- end recruit -->
+            </div>
+        </div>
+    </div>
 {% endblock %}

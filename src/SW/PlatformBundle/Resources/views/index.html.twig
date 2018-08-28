@@ -7,46 +7,105 @@
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/index.css') }}"/>
 
-	<div id="banner">
-        <img src="{{ asset('img/banner.png') }}" alt="banner"/>
-    </div>
-        
-    <section>
-        <div class="title_wrap">
-            <img id="movie_title" src="{{ asset('img/movie_title.png') }}" alt="youtube"/>
-            <a href="https://www.youtube.com/user/NoemieOfficielmusic/videos" target="_blank">
-            	<img class="title_logo" src="{{ asset('img/youtube.png') }}" alt="youtube"/>
+    <header class="header valign" data-scroll-index="0" data-overlay-dark="6">
+        <video class="bg-vid" poster="img/bg1.jpg" autoplay="" loop="" muted="">
+            <source src="{{ asset('video/jsc.mp4') }}" type="video/mp4">
+        </video>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center caption title-header">
+                    <h3 class="no-margin">Noémie Beaujean</h3>
+                    <h1 class="banner-headline clip">
+                            <span class="blc">1st single</span>
+                            <span class="banner-words-wrapper">
+                              <b class="is-visible">on my side</b>
+                            </span>
+                    </h1>
+                    <img src="{{ asset('img/single.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
+                </div>
+            </div>
+        </div>
+        <div class="arrow">
+            <a href="javascript:void(0);" data-scroll-nav="1">
+                <i class="fas fa-chevron-down"></i>
             </a>
         </div>
-        
-        <div id="videos">
-            <iframe class="video" width="320" height="180" src="https://www.youtube.com/embed/5lHbdJXEATs?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            
-            <iframe class="video" width="320" height="180" src="https://www.youtube.com/embed/Vg8VjEixOY0?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            
-            <iframe class="video" width="320" height="180" src="https://www.youtube.com/embed/L9CSvw_K6z8?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
+    </header>
 
-        <div class="title_wrap">
-            <img id="news_title" src="{{ asset('img/news_title.png') }}" alt="youtube"/>
-            <a href="{{ path('sw_platform_news') }}">
-            	<img class="title_logo more_logo" src="{{ asset('img/more.png') }}" alt="more"/>
-            </a>
+    <!-- videos -->
+    <section class="services" data-scroll-index="3">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 center-col margin-30px-bottom sm-margin-40px-bottom xs-margin-30px-bottom text-center wow fadeInUp">
+                    <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Videos</div>
+                    <h5 class="margin-10px-bottom font-weight-300">Les dernières vidéos</h5>
+                    <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+                </div>
+            </div>
+            <div class="row">
+                    <div data-wow-duration="0.4s" class="col-lg-3 col-md-6 margin-30px-bottom xs-margin-20px-bottom wow fadeInUp">
+                        <div class="bg-white border border-width-2 border-color-extra-light-gray text-center feature-box2">
+                            <a class="video" href="https://www.youtube.com/watch?v=L9CSvw_K6z8">
+                                <img src="{{ asset('img/video.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
+                            </a>
+                        </div>
+                    </div>
+                    <div data-wow-duration="0.4s" class="col-lg-3 col-md-6 margin-30px-bottom xs-margin-20px-bottom wow fadeInUp">
+                        <div class="bg-white border border-width-2 border-color-extra-light-gray text-center feature-box2">
+                            <a href="">
+                                <img src="{{ asset('img/video.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
+                            </a>
+                        </div>
+                    </div>
+                    <div data-wow-duration="0.4s" class="col-lg-3 col-md-6 margin-30px-bottom xs-margin-20px-bottom wow fadeInUp">
+                        <div class="bg-white border border-width-2 border-color-extra-light-gray text-center feature-box2">
+                            <a href="https://www.youtube.com/watch?v=L9CSvw_K6z8" target="_blank">
+                                <img src="{{ asset('img/video.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
+                            </a>
+                        </div>
+                    </div>
+                    <div data-wow-duration="0.4s" class="col-lg-3 col-md-6 margin-30px-bottom xs-margin-20px-bottom wow fadeInUp">
+                        <div class="bg-white border border-width-2 border-color-extra-light-gray text-center feature-box2">
+                            <a href="https://www.youtube.com/watch?v=L9CSvw_K6z8" target="_blank">
+                                <img src="{{ asset('img/video.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
+                            </a>
+                        </div>
+                    </div>
+            </div>
         </div>
+    </section>
 
-        <div class="news">
-            <ul>
-            	{% for new in news %}
-	                <li>
-	                    <a href="{{ path('sw_platform_news_info', {'id': new.id   }) }}">
-	                        <p>
-	                            <img src="{{ asset('img/news_image.png') }}"/>
-	                        </p>
-	                        <p>{{ new.subject }}</p>
-	                    </a>
-	                </li>
+    <!-- news -->
+    <section class="blog" data-scroll-index="2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 col-sm-12 center-col margin-30px-bottom sm-margin-40px-bottom xs-margin-30px-bottom text-center last-paragraph-no-margin wow fadeInUp">
+                    <div class="alt-font margin-5px-bottom text-uppercase letter-spacing-1" style="color:#3C7CDD;">Nouveautés</div>
+                    <h5 class="margin-10px-bottom font-weight-300">Les dernières nouveautés</h5>
+                    <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+                </div>
+            </div>
+            <div class="row">
+
+                {% for new in news %}
+                    <div class="col-lg-4 sm-margin-30px-bottom wow fadeInUp" data-wow-delay="0.2 s">
+                        <div class="item text-center">
+                            <div class="post-img">
+                                <img src="{{ asset('img/new.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
+                            </div>
+                            <div class="content">
+                                <h5>{{ new.subject }}</h5>
+                                <div class="author">
+                                    <span class="font-size11 display-inline-block">{{ new.date|date("d/m/Y") }}</span>
+                                </div>
+                                <div class="separator-line-horrizontal-full bg-medium-gray margin-20px-tb"></div>
+                                <p>{{ new.message|slice(0, 200) ~ '...' }}</p>
+                                <a href="{{ path('sw_platform_news_info', {'id': new.id   }) }}" class="read-more">Lire plus</a>
+                            </div>
+                        </div>
+                    </div>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
     </section>
 {% endblock %}

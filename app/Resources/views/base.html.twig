@@ -1,48 +1,136 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- Metas -->
         <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+        <!-- Title  -->
         <title>{% block title %}Noémie Beaujean{% endblock %}</title>
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.png') }}" />  
+        <link rel="apple-touch-icon" href="{{ asset('img/apple-touch-icon-57x57.png') }}">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('img/apple-touch-icon-72x72.png') }}">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('img/apple-touch-icon-114x114.png') }}">
+
         {% block stylesheets %}
+            <!-- Plugins -->
+            <link rel="stylesheet" href="{{ asset('css/plugins.css') }}"/>
+            <!-- Core Style Css -->
             <link rel="stylesheet" href="{{ asset('css/base.css') }}"/>
         {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+
     <body>
-        <header>
-            <nav>
-                {% include '::navbar-top.html.twig' %}
-            </nav>
-        </header>
-        <canvas id="my_canvas" width="350" height="60">Texte alternatif pour les navigateurs ne supportant pas canvas.</canvas>
-
-        <div id="title_header">
-            <a href="{{ path('sw_platform_home') }}"><h1>Noémie Beaujean</h1></a>
-        </div>
-
-        <div id="wrap">
-        {% block body %}{% endblock %}
-        </div>
-        
-        <footer>
-            <div id="social_network">
-                <a href="https://www.facebook.com/NoemieBeaujean" target="_blank">
-                    <img src="{{ asset('img/logo_facebook.png') }}" alt="facebook"/>
+        <!-- Start Navbar -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <!-- start logo -->
+                <a class="logo title_header" href="{{ path('sw_platform_home') }}" data-scroll-nav="0">
+                    <img src="{{ asset('img/logo-light.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
                 </a>
-                <h5>Facebook</h5>
-                
-                <a href="https://www.instagram.com/noemie__beaujean" target="_blank">
-                    <img src="{{ asset('img/logo_instagram.png') }}" alt="instagram"/>
-                </a>
-                <h5>Instagram</h5>  
+                <!-- end Logo -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"><i class="fas fa-bars"></i></span>
+                </button>
+                <!-- navbar links -->
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    {% include '::navbar-top.html.twig' %}
+                </div>
+                <!-- end navbar links -->
             </div>
-            
-            <h6>No&eacute;mie Beaujean &copy; All Right Reserved.</h6>
+        </nav>
+        <!-- End Navbar  -->
+
+        {% block body %}{% endblock %}
+
+        <!--  Start Footer Section -->
+        <footer class="bg-white">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <!-- start footer logo -->
+                        <div class="col-md-12 col-sm-12 text-center wow fadeInUp">
+                            <div class="text-center title-footer">
+                                <h3 class="no-margin">Noémie Beaujean</h3>
+                            </div>
+                            <span class="font-size11 alt-font text-uppercase  display-block letter-spacing-1 text-dark-gray margin-15px-top margin-30px-bottom xs-margin-fifteen">Chanteuse, Interprète, Compositrice</span>
+                        </div>
+                        <!-- end footer logo -->
+                        <!-- start social media link -->
+                        <div class="col-md-12 col-sm-12 text-center wow fadeInUp">
+                            <div class="footer-social">
+                                <a href="https://www.facebook.com/pg/NoemieBeaujean" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="https://www.instagram.com/noemie__beaujean" target="_blank"><i class="fab fa-instagram"></i></a>
+                                <a href="https://twitter.com/NowANDm3" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.youtube.com/user/NoemieOfficielmusic" target="_blank"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        <!-- end social media link -->
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom bg-black">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 text-center">
+                            <span class="font-size12 text-uppercase letter-spacing-1">© 2018 Noémie Beaujean All Right Reserved.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="back-to-top" class="back-to-top reveal">
+                <i class="fa fa-angle-up"></i>
+            </div>
         </footer>
+        <!-- End Footer Section -->
 
         {% block javascripts %}
-            <script src="{{ asset('js/mycanvas.js') }}"></script>
+            <!-- jQuery -->
+            <script src="{{ asset('js/jquery-3.0.0.min.js') }}"></script>
+            <script src="{{ asset('js/jquery-migrate-3.0.0.min.js') }}"></script>
+
+            <!-- popper.min -->
+            <script src="{{ asset('js/popper.min.js') }}"></script>
+
+            <!-- bootstrap -->
+            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+            <!-- scrollIt -->
+            <script src="{{ asset('js/scrollIt.min.js') }}"></script>
+
+            <!-- animated.headline -->
+            <script src="{{ asset('js/animated.headline.js') }}"></script>
+
+            <!-- wow -->
+            <script src="{{ asset('js/wow.js') }}"></script>
+                        
+            <!-- custom scripts -->
+            <script src="{{ asset('js/scripts.js') }}"></script>
+
+            <!-- jquery.waypoints.min -->
+            <script src="js/jquery.waypoints.min.js"></script>
+
+            <!-- jquery.counterup.min -->
+            <script src="js/jquery.counterup.min.js"></script>
+
+            <!-- owl carousel -->
+            <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+
+            <!-- jquery.magnific-popup js -->
+            <script src="js/jquery.magnific-popup.min.js"></script>
+
+            <!-- stellar js -->
+            <script src="js/jquery.stellar.min.js"></script>
+
+            <!-- isotope.pkgd.min js -->
+            <script src="js/isotope.pkgd.min.js"></script>
+
+            <!-- custom scripts -->
+            <script src="js/scripts.js"></script>
+
         {% endblock %}
-        
     </body>
 </html>

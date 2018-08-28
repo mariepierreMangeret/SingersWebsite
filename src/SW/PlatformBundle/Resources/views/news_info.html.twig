@@ -7,24 +7,65 @@
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/news_info.css') }}"/>
 
-	<div class="banner_second">
-        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
-    </div>
-
-    <div class="nav_second">
-        <ul>
-            <li>
-                <a href="{{ path('sw_platform_news') }}">Retour</a>
-            </li>
-        </ul>        
-    </div>
-
-	<section>
-        <h2>{{ news.subject }}</h2>
-
-        <span>{{ news.date|date("m/d/Y") }}</span>
-
-        <p>{{ news.message|nl2br}}</p>
+    <!-- start intro section -->
+    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
+                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
+                </div>
+            </div>
+        </div>
     </section>
+    <!-- end intro section -->
 
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Nouveautés</div>
+            <h5 class="margin-10px-bottom font-weight-300"></h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
+    </div>
+
+    <!--  Start New Section -->
+    <section class="blogs ">
+        <div class="container">
+            <div class="row">
+                <!--  start blog left-->
+                <div class="col-md-12 xs-margin-30px-bottom">
+                    <div class="posts">
+                        <!-- start post -->
+                        <div class="post">
+                            <div class="content">
+                                <div class="post-meta">
+                                    <div class="post-title">
+                                        <h5>{{ news.subject }}</h5>
+                                    </div>
+                                    <ul class="meta wow fadeInUp" data-wow-duration="0.2s">
+                                        <li>
+                                            <i class="fa fa-calendar" aria-hidden="true"></i> {{ news.date|date("m/d/Y") }}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="post-cont wow fadeInUp" data-wow-duration="0.4s">
+                                    <p>{{ news.message|nl2br}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end new -->
+                        <div class="pagination text-uppercase wow fadeInUp">
+                            <ul>
+                                <li>
+                                    <a href="{{ path('sw_platform_news') }}">Retour</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <!--  end new left-->
+            </div>
+        </div>
+    </section>
+    <!--  End New Section -->
 {% endblock %}

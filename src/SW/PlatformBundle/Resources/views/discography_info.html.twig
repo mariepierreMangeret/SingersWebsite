@@ -8,48 +8,83 @@
 
 	<link rel="stylesheet" href="{{ asset('css/discography_info.css') }}"/>
 
-
-	<div class="banner_second">
-        <img src="{{ asset('img/biography.png') }}" alt="banner"/>
-    </div>
-
-    <div class="navigation">
-        <ul>
-            <li>
-                <a href="{{ path('sw_platform_discography', {'id': 1 }) }}">Retour</a>
-            </li>
-        </ul>        
-    </div>
-
-    <section>
-        <h2>{{ disc.title }}</h2>
-
-        <div id="wrap_info">
-            <aside>
-                <img src="{{ asset('img/cd1.png') }}" alt="cd"/>
-                <button type="button">Acheter</button> 
-            </aside>
-
-            <article>
-                <table>
-                    <tr>
-                        <th colspan="2">Titre</th>
-                    </tr>
-                    {% for songDisc in disc.getSongs() %}
-                        <tr>
-                            <td class="table_id">{{ loop.index }}</td> 
-                            <td class="table_title">{{ songDisc.getSong().title }}</td>
-                        </tr>
-                    {% endfor %}  
-                </table>
-            </article>
-
+    <!-- start intro section -->
+    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
+                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
+                </div>
+            </div>
         </div>
-
-        <h2>Informations</h2>
-        <p>{{ disc.information|nl2br }}</p>
     </section>
+    <!-- end intro section -->
 
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Discographie</div>
+            <h5 class="margin-10px-bottom font-weight-300">Toute la discographie</h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
+    </div>
 
+    <!--  Start Disco Section -->
+    <section class="blogs">
+        <div class="container">
+            <div class="row">
+                <!--  start Disco left-->
+                <div class="col-md-12 xs-margin-30px-bottom">
+                    <div class="posts">
+                        <!-- start post -->
+                        <div class="post margin-30px-top">
+                            <div class="content">
+                                <div class="post-meta">
+                                    <div class="post-title">
+                                        <h5>{{ disc.title }}</h5>
+                                    </div>
+                                </div>
+                                <div class="row wow fadeInUp" data-wow-duration="0.4s">
+                                    <div class="col-md-6 text-center">
+                                        <img src="{{ asset('img/cd1.png') }}" alt="cd"/> <br>
+                                        <a href="" class="btn wow fadeInUp margin-10px-top" data-wow-duration="0.6s">Acheter</a>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <table>
+                                            <tr>
+                                                <th colspan="2" style="text-align:center;">Titre</th>
+                                            </tr>
+                                            {% for songDisc in disc.getSongs() %}
+                                                <tr>
+                                                    <td class="table_id">{{ loop.index }}</td> 
+                                                    <td class="table_title">{{ songDisc.getSong().title }}</td>
+                                                </tr>
+                                            {% endfor %}  
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="post-meta margin-30px-top">
+                                    <div class="post-title">
+                                        <h5>Informations</h5>
+                                    </div>
+                                    <p>{{ disc.information }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end post -->
+                        <div class="pagination text-uppercase wow fadeInUp">
+                            <ul>
+                                <li>
+                                    <a href="{{ path('sw_platform_discography', {'id': 1 }) }}">Retour</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--  end Disco left-->
+            </div>
+        </div>
+    </section>
+    <!--  End Disco Section -->
 {% endblock %}
 
