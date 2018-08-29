@@ -35,8 +35,6 @@ class PlatformController extends Controller
 
     public function contactAction(Request $request)
     {
-        // Create the form according to the FormType created previously.
-        // And give the proper parameters
         $form = $this->createForm('SW\PlatformBundle\Form\ContactType',null,array(
             // To set the action use $this->generateUrl('route_identifier')
             'action' => $this->generateUrl('sw_platform_contact'),
@@ -44,21 +42,35 @@ class PlatformController extends Controller
         ));
 
         if ($request->isMethod('POST')) {
-            // Refill the fields in case the form is not valid.
             $form->handleRequest($request);
 
             if($form->isValid()){
-                // Send mail
-                if($this->sendEmail($form->getData())){
+                $message = (new \Swift_Message('Formulaire de contact'))
+                  ->setFrom('b.noemie.music@gmail.com')
+                  ->setTo('b.noemie.music@gmail.com')
+                  ->setBody(
+                      $this->renderView(
+                          // app/Resources/views/emails/contact.html.twig
+                          'emails/contact.html.twig',
+                          array(
+                            'name'     => $form["name"]->getData(),
+                            'email'    => $form["email"]->getData(),
+                            'subject'  => $form["subject"]->getData(),
+                            'message'  => $form["message"]->getData()
+                        )
+                      ),
+                      'text/html'
+                  )
+                ;
 
-                    $request->getSession()->getFlashBag()->add('notice', 'Message bien envoyé.');
-                    // Everything OK, redirect to wherever you want ! :
-                    
-                    return $this->redirectToRoute('sw_platform_contact');
-                }else{
-                    // An error ocurred, handle
-                    var_dump("Error");
-                }
+                $this->get('mailer')->send($message);
+                unset($form);
+                $request->getSession()->getFlashBag()->add('notice', 'Message bien envoyé.');
+                $form = $this->createForm('SW\PlatformBundle\Form\ContactType',null,array(
+                    // To set the action use $this->generateUrl('route_identifier')
+                    'action' => $this->generateUrl('sw_platform_contact'),
+                    'method' => 'POST'
+                ));
             }
         }
 
