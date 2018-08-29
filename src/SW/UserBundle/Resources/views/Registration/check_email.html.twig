@@ -1,7 +1,7 @@
 {% extends "::base.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
-
+    
 {% block title %}
     Inscription - {{ parent() }}
 {% endblock %}
@@ -23,7 +23,7 @@
 
     <div class="row" style="background-color:#eee;">
         <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
-            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Confirmation</div>
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Validation</div>
             <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="col-lg-8 center-col text-center wow fadeInUp">
             <div class="sm-padding-50px-tb sm-no-padding-lr" style="padding:30px;">
                 {% block fos_user_content %}
-                    <h5 class="margin-10px-bottom font-weight-300">{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</h5>
+                    <h5 class="margin-10px-bottom font-weight-300">{{ 'registration.check_email'|trans({'%email%': user.email}) }}</h5>
                 	<p>           	
                 	   <a href="{{ path('sw_platform_home') }}"> &rarr;	 Retour à la page d'accueil</a>
                     </p>
