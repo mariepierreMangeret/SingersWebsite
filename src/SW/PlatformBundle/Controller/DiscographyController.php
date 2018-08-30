@@ -29,6 +29,7 @@ class DiscographyController extends Controller
         return $this->render('SWPlatformBundle::discography.html.twig', array(
               'typediscs'      => $typediscs, 
               'discs'          => $discs,
+              'id'             => $id,
               
         ));
     }

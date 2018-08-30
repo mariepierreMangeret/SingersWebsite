@@ -1,17 +1,17 @@
 <ul class="navbar-nav ml-auto">
-    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_news') }}">Nouveautés</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_biography') }}">Biographie</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_discography', {'id': 1 }) }}">Discographie</a></li>        
-    <li class="nav-item"><a class="nav-link" href="{{ path('sw_blog_home') }}">Blog</a></li>
-    <li class="nav-item"><a class="nav-link" href="#">Boutique</a></li>
-    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_contact') }}">Contact</a></li>
+    <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_platform_news' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_platform_news') }}">Nouveautés</a></li>
+    <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_platform_biography' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_platform_biography') }}">Biographie</a></li>
+    <li class="nav-item  {% if app.request.attributes.get('_route') == 'sw_platform_discography' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_platform_discography', {'id': 1 }) }}">Discographie</a></li>        
+    <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_blog_home' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_blog_home') }}">Blog</a></li>
+    <li class="nav-item {% if app.request.attributes.get('_route') == '#' %}active{% endif %}"><a class="nav-link" href="#">Boutique</a></li>
+    <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_platform_contact' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_platform_contact') }}">Contact</a></li>
 
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-	    <li class="nav-item"><a class="nav-link" href="{{ path('sw_platform_profile', {'id': app.user.id }) }}">Profil</a></li>
+	    <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_platform_profile' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_platform_profile', {'id': app.user.id }) }}">Profil</a></li>
 	    <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
 
 	{% else %}
-	    <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_login') }}">Connexion</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
+	    <li class="nav-item {% if app.request.attributes.get('_route') == 'fos_user_security_login' %}active{% endif %}"><a class="nav-link" href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+        <li class="nav-item {% if app.request.attributes.get('_route') == 'fos_user_registration_register' %}active{% endif %}"><a class="nav-link" href="{{ path('fos_user_registration_register') }}">Inscription</a></li>
 	{% endif %}
 </ul>

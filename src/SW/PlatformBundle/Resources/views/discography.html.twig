@@ -28,7 +28,6 @@
         </div>
     </div>
 
-
     <!--  Start Disco Section -->
     <section class="blogs">
         <div class="container">
@@ -39,7 +38,7 @@
                         <div class="pagination text-uppercase wow fadeInUp">
                             <ul>
                                 {% for typedisc in typediscs %}
-                                    <li>
+                                    <li {% if id == typedisc.id %} class="active-page" {% endif %}>
                                         <a href="{{ path('sw_platform_discography', {'id': typedisc.id   }) }}">{{ typedisc.title }}</a>
                                     </li>
                                 {% endfor %}  

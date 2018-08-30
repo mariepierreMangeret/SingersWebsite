@@ -1,6 +1,10 @@
 /*============================== 
     Blog
 ================================*/
+.active-page a {
+  background-color: black !important; 
+  color:white !important;
+}
 
 .blogs {
   background-color: #eee!important;
@@ -188,7 +192,7 @@
       color: #999;
       background-color: transparent;
       cursor: default; }
-      .blogs .posts .pagination .disabled a:hover {
+      .blogs .posts .pagination .disabled a:pagination {
         color: #999;
         background-color: transparent;
         cursor: default; }

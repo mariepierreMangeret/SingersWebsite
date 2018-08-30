@@ -1,6 +1,11 @@
 /*============================== 
     Basic
 ================================*/
+
+.active a {
+  color: #3C7CDD !important; 
+}
+
 .bg-img {
   background-size: cover;
   background-repeat: no-repeat; }
