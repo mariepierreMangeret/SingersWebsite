@@ -24,4 +24,34 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
 
 		return new Paginator($query, true);
 	}
+
+	public function getDateArchive()
+	{
+  	    $query = $this->_em->createQuery('
+  	    SELECT b.created, MONTH(b.created) + YEAR(b.created) AS HIDDEN groupDate
+  	    FROM SWBlogBundle:Blog b
+  		GROUP BY groupDate
+  		ORDER BY b.created DESC');
+
+  		//var_dump($query->getResult()); 
+  	    return $query->getResult();
+	}
+
+	public function getArchive($year, $month, $page, $nbPerPage)
+	{
+  	    $query = $this->_em->createQuery('
+  	    SELECT b, MONTH(b.created) + YEAR(b.created) AS HIDDEN groupDate
+  	    FROM SWBlogBundle:Blog b
+  	    WHERE MONTH(b.created) = :month
+  	    AND YEAR(b.created) = :year
+  	    ORDER BY b.created DESC')
+  	    ->setParameter('month', $month)
+  	    ->setParameter('year', $year);
+
+		$query
+		->setFirstResult(($page-1) * $nbPerPage)
+		->setMaxResults($nbPerPage);
+
+		return new Paginator($query, true);
+	}
 }

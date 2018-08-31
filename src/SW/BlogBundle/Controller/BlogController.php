@@ -13,19 +13,26 @@ use SW\BlogBundle\Form\CommentType;
 use SW\UserBundle\Entity\User;
 
 class BlogController extends Controller {
-    public function indexAction(Request $request,$page) {
+    public function indexAction(Request $request, $page, $year=null, $month=null) {
         if ($page < 1) {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
 
         $nbPerPage = 5;
 
-        $blogs = $this
+        $repositoryBlog = $this
             ->getDoctrine()
             ->getManager()
-            ->getRepository('SWBlogBundle:Blog')
-            ->myBlogs($page, $nbPerPage);
-          
+            ->getRepository('SWBlogBundle:Blog');
+
+        if ($year == null && $month == null) {
+            $blogs = $repositoryBlog->myBlogs($page, $nbPerPage);
+        } else {
+            $blogs = $repositoryBlog->getArchive($year, $month, $page, $nbPerPage);
+        };
+
+        $datesArchive = $repositoryBlog->getDateArchive();
+
         $nbPages = ceil(count($blogs)/$nbPerPage);
 
         if ($page > $nbPages) {
@@ -33,9 +40,10 @@ class BlogController extends Controller {
         }
 
         return $this->render('SWBlogBundle::index.html.twig', array(
-            'blogs'     => $blogs, 
-            'nbPages'   => $nbPages,
-            'page'      => $page,  
+            'blogs'         => $blogs, 
+            'nbPages'       => $nbPages,
+            'page'          => $page, 
+            'datesArchive'  => $datesArchive,
         ));
     }
 

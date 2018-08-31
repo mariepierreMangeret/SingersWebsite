@@ -3,6 +3,17 @@ sw_blog_home:
     defaults: { 
       _controller: SWBlogBundle:Blog:index, page: 1  }
     requirements:
+      year: \d+
+      month: \d+
+      page: \d*   
+
+sw_blog_archive:
+    path:     /blog/{year}-{month}/{page}
+    defaults: { 
+      _controller: SWBlogBundle:Blog:index, page: 1  }
+    requirements:
+      year: \d+
+      month: \d+
       page: \d*   
 
 sw_blog_show:
@@ -12,4 +23,3 @@ sw_blog_show:
     requirements:
         id: \d+
         page: \d*   
-

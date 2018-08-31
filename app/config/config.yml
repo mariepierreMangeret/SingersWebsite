@@ -68,6 +68,11 @@ doctrine:
                 mappings:
                     ApplicationSonataMediaBundle: ~
                     SonataMediaBundle: ~
+                dql:
+                    string_functions:
+                        MONTH: DoctrineExtensions\Query\Mysql\Month
+                        YEAR: DoctrineExtensions\Query\Mysql\Year
+
                     
 
 
