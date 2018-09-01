@@ -13,7 +13,7 @@ use SW\BlogBundle\Form\CommentType;
 use SW\UserBundle\Entity\User;
 
 class BlogController extends Controller {
-    public function indexAction(Request $request, $page, $year=null, $month=null) {
+    public function indexAction(Request $request, $page, $year=null, $month=null, $search=null) {
         if ($page < 1) {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
@@ -25,10 +25,19 @@ class BlogController extends Controller {
             ->getManager()
             ->getRepository('SWBlogBundle:Blog');
 
-        if ($year == null && $month == null) {
-            $blogs = $repositoryBlog->myBlogs($page, $nbPerPage);
-        } else {
+        if ( $request->request->get('search') != null ) {
+            $search = $request->request->get('search');
+        }
+
+        if ($year != null && $month != null) {
             $blogs = $repositoryBlog->getArchive($year, $month, $page, $nbPerPage);
+            $type_page = 'archive';
+        } else if ($search != null) {
+            $blogs = $repositoryBlog->getSearch($search, $page, $nbPerPage);
+            $type_page = 'search';
+        } else if ($year == null && $month == null && $search == null) {
+            $blogs = $repositoryBlog->myBlogs($page, $nbPerPage);
+            $type_page = 'home';
         };
 
         $datesArchive = $repositoryBlog->getDateArchive();
@@ -44,6 +53,10 @@ class BlogController extends Controller {
             'nbPages'       => $nbPages,
             'page'          => $page, 
             'datesArchive'  => $datesArchive,
+            'search'        => $search,
+            'type_page'     => $type_page, 
+            'year'          => $year,
+            'month'         => $month,
         ));
     }
 
@@ -103,4 +116,5 @@ class BlogController extends Controller {
             'page'      => $page, 
         ));
     }
+
 }

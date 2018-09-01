@@ -35,6 +35,9 @@
                 <!--  start blog left-->
                 <div class="col-md-8 xs-margin-30px-bottom">
                     <div class="posts">
+                        {% if type_page == 'search' %}
+                            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Votre recherche : "{{ search }}"</div>
+                        {% endif %}
                         <!-- start post -->
                         {% for blog in blogs %}
                             <div class="post">
@@ -63,13 +66,21 @@
 
                         <div class="pagination text-uppercase wow fadeInUp">
                             <ul>
-                                {% for p in range(1, nbPages) %}
-                                    <li><a href="javascript:void(0);"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
-                                    <li {% if p == page %} class="active-page" {% endif %}>
-                                        <a href="{{ path('sw_blog_home', {'page': p}) }}">{{ p }}</a>
-                                    </li>
-                                    <li><a href="javascript:void(0);">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
-                                {% endfor %}
+                                <li><a href="javascript:void(0);"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
+                                    {% for p in range(1, nbPages) %}
+                                        <li {% if p == page %} class="active-page" {% endif %}>
+                                            {% if type_page == 'archive' %}
+                                                <a href="{{ path('sw_blog_archive', {'page': p, 'year': year,'month': month }) }}">{{ p }}</a>
+                                            {% endif %}
+                                            {% if type_page == 'search' %}
+                                                <a href="{{ path('sw_blog_research', {'page': p, 'search': search}) }}">{{ p }}</a>
+                                            {% endif %}
+                                            {% if type_page == 'home' %}
+                                                <a href="{{ path('sw_blog_home', {'page': p}) }}">{{ p }}</a>
+                                            {% endif %}
+                                        </li>
+                                    {% endfor %}
+                                <li><a href="javascript:void(0);">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
                             </ul>
                         </div>
 
@@ -80,11 +91,12 @@
                 <div class="col-md-4">
                     <div class="side-bar">
                         <div class="widget search wow fadeInRight">
-                            <form method='post'>
+                            <form method="post" action="{{ path('sw_blog_research', {'search': search}) }}">
                                 <input type="hidden" name="form-name" value="form 1" />
-                                <input type="search" name="search"  placeholder="Type here ...">
+                                <input type="search" name="search" placeholder="Votre recherche ...">
                                 <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </form>
+
                         </div>
                         <div class="widget  wow fadeInRight" data-wow-duration="0.8s">
                             <div class="widget-title">

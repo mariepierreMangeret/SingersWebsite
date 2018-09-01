@@ -54,4 +54,21 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
 
 		return new Paginator($query, true);
 	}
+
+	public function getSearch($search, $page, $nbPerPage)
+	{
+
+  	    $query = $this->_em->createQuery('
+  	    SELECT b
+  	    FROM SWBlogBundle:Blog b
+  	    WHERE b.title LIKE :search
+  	    ORDER BY b.created DESC')
+  	    ->setParameter('search', '%'.$search.'%');
+
+		$query
+		->setFirstResult(($page-1) * $nbPerPage)
+		->setMaxResults($nbPerPage);
+
+		return new Paginator($query, true);
+	}
 }
