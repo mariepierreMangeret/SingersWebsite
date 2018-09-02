@@ -129,13 +129,20 @@ sonata_media:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
 
+        video:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 150 , quality: 95}
+                big:   { width: 600 , quality: 95}
+
     cdn:
         server:
-            path: /uploads/media # http://media.sonata-project.org/
+            path: /SingersWebsite/web/uploads/media # http://media.sonata-project.org/
 
     filesystem:
         local:
-            directory:  "%kernel.root_dir%/../public/uploads/media" #flex
+            directory:  "%kernel.root_dir%/../web/uploads/media" #flex
             #directory:  "%kernel.root_dir%/../web/uploads/media" #non-flex
             create:     false
 

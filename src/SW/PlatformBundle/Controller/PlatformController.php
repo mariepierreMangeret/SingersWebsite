@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use SW\PlatformBundle\Entity\News;
 use SW\PlatformBundle\Entity\Section;
 use SW\PlatformBundle\Entity\Experience;
+use SW\PlatformBundle\Entity\Video;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
@@ -21,15 +22,23 @@ class PlatformController extends Controller
     {
         $nbPerPage = 3;
 
+        $nbVideosPerPage = 4;
+
         $news = $this
           ->getDoctrine()
           ->getManager()
           ->getRepository('SWPlatformBundle:News')
           ->myNewsIndex($nbPerPage);
 
-        return $this->render('SWPlatformBundle::index.html.twig', array(
-              'news'      => $news,
+        $videos = $this
+          ->getDoctrine()
+          ->getManager()
+          ->getRepository('SWPlatformBundle:Video')
+          ->myVideosIndex($nbVideosPerPage);
 
+        return $this->render('SWPlatformBundle::index.html.twig', array(
+            'news'      => $news,
+            'videos'     => $videos,
         ));
     }
 

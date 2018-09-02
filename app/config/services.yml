@@ -68,3 +68,9 @@ services:
         arguments: [~, SW\UserBundle\Entity\User, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: utilisateur, group: Utilisateur }
+
+    admin.video:
+        class: SW\PlatformBundle\Admin\VideoAdmin
+        arguments: [~, SW\PlatformBundle\Entity\Video, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Video, group: Video }

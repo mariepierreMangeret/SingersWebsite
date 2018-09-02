@@ -43,34 +43,33 @@
                 </div>
             </div>
             <div class="row">
+                {% for video in videos %}
                     <div data-wow-duration="0.4s" class="col-lg-3 col-md-6 margin-30px-bottom xs-margin-20px-bottom wow fadeInUp">
                         <div class="bg-white border border-width-2 border-color-extra-light-gray text-center feature-box2">
-                            <a class="video" href="https://www.youtube.com/watch?v=L9CSvw_K6z8">
-                                <img src="{{ asset('img/video.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
+                            <a href="" data-toggle="modal" data-target="#myModal{{ video.id }}" class="video-btn">
+                                {% thumbnail video.image,'big' %}
                             </a>
                         </div>
                     </div>
-                    <div data-wow-duration="0.4s" class="col-lg-3 col-md-6 margin-30px-bottom xs-margin-20px-bottom wow fadeInUp">
-                        <div class="bg-white border border-width-2 border-color-extra-light-gray text-center feature-box2">
-                            <a href="">
-                                <img src="{{ asset('img/video.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
-                            </a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal{{ video.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">            
+                            <div class="modal-body">
+                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>        
+                                <!-- 16:9 aspect ratio -->
+                                <div class="embed-responsive embed-responsive-16by9">
+                                   <iframe id="video_yt{{ video.id }}" width="720" height="405" src="{{ video.link }}?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                </div>   
+                            </div>
                         </div>
+                      </div>
                     </div>
-                    <div data-wow-duration="0.4s" class="col-lg-3 col-md-6 margin-30px-bottom xs-margin-20px-bottom wow fadeInUp">
-                        <div class="bg-white border border-width-2 border-color-extra-light-gray text-center feature-box2">
-                            <a href="https://www.youtube.com/watch?v=L9CSvw_K6z8" target="_blank">
-                                <img src="{{ asset('img/video.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
-                            </a>
-                        </div>
-                    </div>
-                    <div data-wow-duration="0.4s" class="col-lg-3 col-md-6 margin-30px-bottom xs-margin-20px-bottom wow fadeInUp">
-                        <div class="bg-white border border-width-2 border-color-extra-light-gray text-center feature-box2">
-                            <a href="https://www.youtube.com/watch?v=L9CSvw_K6z8" target="_blank">
-                                <img src="{{ asset('img/video.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
-                            </a>
-                        </div>
-                    </div>
+                <!-- end Modal -->
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -109,3 +108,4 @@
         </div>
     </section>
 {% endblock %}
+
