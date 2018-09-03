@@ -18,6 +18,9 @@ class DiscAdmin extends Admin
                 ->with('Nouveau disque', array('class' => 'col-md-9'))
                     ->add('title', 'text')
                     ->add('information', 'textarea')
+                    ->add('urlAmazon', 'text')
+                    ->add('urlItunes', 'text')
+                    ->add('urlShop', 'text')
                 ->end()
                 ->with('Categorie', array('class' => 'col-md-9'))
                     ->add('typedisc', 'entity', array(

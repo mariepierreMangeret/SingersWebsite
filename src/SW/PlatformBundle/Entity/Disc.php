@@ -55,6 +55,27 @@ class Disc
     private $songs;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="urlAmazon", type="string", length=255, nullable=true)
+     */
+    private $urlAmazon;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urlItunes", type="string", length=255, nullable=true)
+     */
+    private $urlItunes;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urlShop", type="string", length=255, nullable=true)
+     */
+    private $urlShop;
+
+    /**
      * Get id
      *
      * @return int
@@ -69,7 +90,7 @@ class Disc
      *
      * @param string $title
      *
-     * @return Disque
+     * @return Disc
      */
     public function setTitle($title)
     {
@@ -93,7 +114,7 @@ class Disc
      *
      * @param string $image
      *
-     * @return Disque
+     * @return Disc
      */
     public function setImage($image)
     {
@@ -117,7 +138,7 @@ class Disc
      *
      * @param string $information
      *
-     * @return Disque
+     * @return Disc
      */
     public function setInformation($information)
     {
@@ -203,5 +224,77 @@ class Disc
     public function getSongs()
     {
         return $this->songs;
+    }
+
+    /**
+     * Set urlAmazon
+     *
+     * @param string $urlAmazon
+     *
+     * @return Disc
+     */
+    public function setUrlAmazon($urlAmazon)
+    {
+        $this->urlAmazon = $urlAmazon;
+
+        return $this;
+    }
+
+    /**
+     * Get urlAmazon
+     *
+     * @return string
+     */
+    public function getUrlAmazon()
+    {
+        return $this->urlAmazon;
+    }
+
+    /**
+     * Set urlItunes
+     *
+     * @param string $urlItunes
+     *
+     * @return Disc
+     */
+    public function setUrlItunes($urlItunes)
+    {
+        $this->urlItunes = $urlItunes;
+
+        return $this;
+    }
+
+    /**
+     * Get urlItunes
+     *
+     * @return string
+     */
+    public function getUrlItunes()
+    {
+        return $this->urlItunes;
+    }
+
+    /**
+     * Set urlShop
+     *
+     * @param string $urlShop
+     *
+     * @return Disc
+     */
+    public function setUrlShop($urlShop)
+    {
+        $this->urlShop = $urlShop;
+
+        return $this;
+    }
+
+    /**
+     * Get urlShop
+     *
+     * @return string
+     */
+    public function getUrlShop()
+    {
+        return $this->urlShop;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace SW\PlatformBundle\Repository;
 
+use Doctrine\ORM\EntityRepository;
+
 /**
  * DiscRepository
  *
@@ -10,4 +12,11 @@ namespace SW\PlatformBundle\Repository;
  */
 class DiscRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function myDisc($id) {
+   		$query = $this->_em->createQuery('
+			SELECT d FROM SWPlatformBundle:Disc d
+			ORDER BY d.id DESC ');
+
+   		return ($query->getResult());
+	}
 }

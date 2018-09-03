@@ -23,7 +23,7 @@ class DiscographyController extends Controller
               ->getDoctrine()
               ->getManager()
               ->getRepository('SWPlatformBundle:Disc')
-              ->findByTypedisc($id);
+              ->myDisc($id);
               
       
         return $this->render('SWPlatformBundle::discography.html.twig', array(
