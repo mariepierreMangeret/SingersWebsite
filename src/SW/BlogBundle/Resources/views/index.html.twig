@@ -66,21 +66,43 @@
 
                         <div class="pagination text-uppercase wow fadeInUp">
                             <ul>
-                                <li><a href="javascript:void(0);"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
-                                    {% for p in range(1, nbPages) %}
-                                        <li {% if p == page %} class="active-page" {% endif %}>
-                                            {% if type_page == 'archive' %}
-                                                <a href="{{ path('sw_blog_archive', {'page': p, 'year': year,'month': month }) }}">{{ p }}</a>
-                                            {% endif %}
-                                            {% if type_page == 'search' %}
-                                                <a href="{{ path('sw_blog_research', {'page': p, 'search': search}) }}">{{ p }}</a>
-                                            {% endif %}
-                                            {% if type_page == 'home' %}
-                                                <a href="{{ path('sw_blog_home', {'page': p}) }}">{{ p }}</a>
-                                            {% endif %}
-                                        </li>
-                                    {% endfor %}
-                                <li><a href="javascript:void(0);">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
+                                {% if page != 1 and type_page == 'archive' %}
+                                    <li><a href="{{ path('sw_blog_archive', {'page': (page-1), 'year': year,'month': month }) }}"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
+                                {% endif %}
+
+                                {% if page != 1 and type_page == 'search' %}
+                                    <li><a href="{{ path('sw_blog_research', {'page': (page-1), 'search': search }) }}"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
+                                {% endif %}
+
+                                {% if page != 1 and type_page == 'home' %}
+                                    <li><a href="{{ path('sw_blog_home', {'page': (page-1) }) }}"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
+                                {% endif %}
+
+                                {% for p in range(1, nbPages) %}
+                                    <li {% if p == page %} class="active-page" {% endif %}>
+                                        {% if type_page == 'archive' %}
+                                            <a href="{{ path('sw_blog_archive', {'page': p, 'year': year,'month': month }) }}">{{ p }}</a>
+                                        {% endif %}
+                                        {% if type_page == 'search' %}
+                                            <a href="{{ path('sw_blog_research', {'page': p, 'search': search}) }}">{{ p }}</a>
+                                        {% endif %}
+                                        {% if type_page == 'home' %}
+                                            <a href="{{ path('sw_blog_home', {'page': p}) }}">{{ p }}</a>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+
+                                {% if page != nbPages and type_page == 'archive' %}
+                                    <li><a href="{{ path('sw_blog_archive', {'page': (page+1), 'year': year,'month': month }) }}">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
+                                {% endif %}
+
+                                {% if page != nbPages and type_page == 'search' %}
+                                    <li><a href="{{ path('sw_blog_research', {'page': (page+1), 'search': search }) }}">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
+                                {% endif %}
+
+                                {% if page != nbPages and type_page == 'home' %}
+                                    <li><a href="{{ path('sw_blog_home', {'page': (page+1) }) }}">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
+                                {% endif %}           
                             </ul>
                         </div>
 

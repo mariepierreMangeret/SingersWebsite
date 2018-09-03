@@ -16,7 +16,7 @@ class NewsController extends Controller
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
           }
 
-          $nbPerPage = 5;
+          $nbPerPage = 4;
 
           $news = $this
               ->getDoctrine()

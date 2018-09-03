@@ -85,11 +85,19 @@
                         <!--  start nav-->
                         <div class="pagination text-uppercase wow fadeInUp" style="margin-bottom:30px;margin-top:30px;">
                             <ul>
-                                {% for p in range(1, nbPages) %}
+                                {% if page != 1 %}
+                                    <li><a href="{{ path('sw_blog_show', {'id': blog.id, 'page': (page-1) }) }}"><i class="fas fa-long-arrow-alt-left margin-5px-right xs-display-none"></i> Prev</a></li>
+                                {% endif %}
+
+                                {% for p in range(1, nbPages)|slice(page-1,3) %}
                                     <li {% if p == page %} class="active-page" {% endif %}>
                                         <a href="{{ path('sw_blog_show', {'id': blog.id, 'page': p}) }}">{{ p }}</a>
                                     </li>
                                 {% endfor %}
+
+                                {% if page != nbPages %}
+                                    <li><a href="{{ path('sw_blog_show', {'id': blog.id, 'page': (page+1) }) }}">Next <i class="fas fa-long-arrow-alt-right margin-5px-left xs-display-none"></i></a></li>
+                                {% endif %}
                             </ul>
                         </div>
                         <!-- end nav-->
