@@ -12,6 +12,7 @@ use SW\PlatformBundle\Entity\News;
 use SW\PlatformBundle\Entity\Section;
 use SW\PlatformBundle\Entity\Experience;
 use SW\PlatformBundle\Entity\Video;
+use SW\PlatformBundle\Entity\Header;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
@@ -36,9 +37,16 @@ class PlatformController extends Controller
           ->getRepository('SWPlatformBundle:Video')
           ->myVideosIndex($nbVideosPerPage);
 
+        $header = $this
+          ->getDoctrine()
+          ->getManager()
+          ->getRepository('SWPlatformBundle:Header')
+          ->findAll();
+
         return $this->render('SWPlatformBundle::index.html.twig', array(
             'news'      => $news,
-            'videos'     => $videos,
+            'videos'    => $videos,
+            'header'    => $header,
         ));
     }
 
@@ -128,5 +136,18 @@ class PlatformController extends Controller
               'profile'      => $profile, 
               'form'         => $form->createView(),
         )); 
+    }
+
+    public function bannerAction(Request $request)
+    {
+        $header = $this
+          ->getDoctrine()
+          ->getManager()
+          ->getRepository('SWPlatformBundle:Header')
+          ->findAll();
+
+        return $this->render('SWPlatformBundle::banner.html.twig', array(
+            'header'    => $header,
+        ));
     }
 }

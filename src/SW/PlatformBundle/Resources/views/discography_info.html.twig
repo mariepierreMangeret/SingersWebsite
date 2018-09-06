@@ -8,17 +8,10 @@
 
 	<link rel="stylesheet" href="{{ asset('css/discography_info.css') }}"/>
 
-    <!-- start intro section -->
-    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
-                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end intro section -->
+    {{ render(controller(
+        'SW\\PlatformBundle\\Controller\\PlatformController::bannerAction'
+    )) }}
+
 
     <div class="row" style="background-color:#eee;">
         <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
@@ -45,7 +38,7 @@
                                 </div>
                                 <div class="row wow fadeInUp" data-wow-duration="0.4s">
                                     <div class="col-md-6 text-center">
-                                        <img src="{{ asset('img/cd1.png') }}" alt="cd"/> <br>
+                                        {% thumbnail disc.image,'big' %} <br>
                                         <a href="{{ disc.urlAmazon }}" class="btn wow fadeInUp margin-10px-top" data-wow-duration="0.6s" target="_blank"><i class="fab fa-amazon"></i> Amazon</a> 
                                         <a href="{{ disc.urlItunes }}" class="btn wow fadeInUp margin-10px-top" data-wow-duration="0.6s" target="_blank"><i class="fab fa-itunes-note"></i> iTunes</a>
                                         <a href="{{ disc.urlShop }}" class="btn wow fadeInUp margin-10px-top" data-wow-duration="0.6s" target="_blank"><i class="fas fa-shopping-cart"></i> Boutique officielle</a>

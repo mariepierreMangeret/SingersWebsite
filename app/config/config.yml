@@ -136,6 +136,28 @@ sonata_media:
                 small: { width: 150 , quality: 95}
                 big:   { width: 600 , quality: 95}
 
+        header:
+            providers:
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+            formats:
+                small: { width: 240 , quality: 95}
+                big:   { width: 600 , quality: 95}
+
+        new:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 150 , quality: 95}
+                big:   { width: 600 , quality: 95}
+
+        disc:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 200 , quality: 95}
+                big:   { width: 286 , quality: 95}
+
     cdn:
         server:
             path: /SingersWebsite/web/uploads/media # http://media.sonata-project.org/
@@ -151,6 +173,9 @@ sonata_media:
             resizer: sonata.media.resizer.square
             allowed_extensions: ['jpg', 'png', 'gif', 'jpeg']
             allowed_mime_types: ['image/pjpeg','image/jpeg','image/png','image/x-png', 'image/gif']
+        file:
+            allowed_extensions: ['mp4', 'flv']
+            allowed_mime_types: ['video/mp4', 'video/x-flv']
 
     class:
         media: Application\Sonata\MediaBundle\Entity\Media

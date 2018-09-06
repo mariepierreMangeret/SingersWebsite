@@ -15,7 +15,9 @@ class DiscRepository extends \Doctrine\ORM\EntityRepository
 	public function myDisc($id) {
    		$query = $this->_em->createQuery('
 			SELECT d FROM SWPlatformBundle:Disc d
-			ORDER BY d.id DESC ');
+			WHERE d.typedisc = :id
+			ORDER BY d.id DESC ')
+   		-> setParameter('id', $id);
 
    		return ($query->getResult());
 	}

@@ -8,28 +8,30 @@
 	<link rel="stylesheet" href="{{ asset('css/index.css') }}"/>
 
     <header class="header valign" data-scroll-index="0" data-overlay-dark="6">
-        <video class="bg-vid" poster="img/bg1.jpg" autoplay="" loop="" muted="">
-            <source src="{{ asset('video/jsc.mp4') }}" type="video/mp4">
-        </video>
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center caption title-header">
-                    <h3 class="no-margin">Noémie Beaujean</h3>
-                    <h1 class="banner-headline clip">
-                            <span class="blc">1st single</span>
-                            <span class="banner-words-wrapper">
-                              <b class="is-visible">on my side</b>
-                            </span>
-                    </h1>
-                    <img src="{{ asset('img/single.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
+        {% for h in header %}
+            <video class="bg-vid" poster="img/bg1.jpg" autoplay="" loop="" muted="">
+                <source src="{{ asset('video/jsc.mp4') }}" type="video/mp4">
+            </video>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center caption title-header">
+                        <h3 class="no-margin">Noémie Beaujean</h3>
+                        <h1 class="banner-headline clip">
+                                <span class="blc">{{ h.titleOne }}</span>
+                                <span class="banner-words-wrapper">
+                                  <b class="is-visible">{{ h.titleTwo }}</b>
+                                </span>
+                        </h1>
+                        {% thumbnail h.image,'big' %}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="arrow">
-            <a href="javascript:void(0);" data-scroll-nav="1">
-                <i class="fas fa-chevron-down"></i>
-            </a>
-        </div>
+            <div class="arrow">
+                <a href="javascript:void(0);" data-scroll-nav="1">
+                    <i class="fas fa-chevron-down"></i>
+                </a>
+            </div>
+        {% endfor %}
     </header>
 
     <!-- videos -->
@@ -90,7 +92,7 @@
                     <div class="col-lg-4 sm-margin-30px-bottom wow fadeInUp" data-wow-delay="0.2 s">
                         <div class="item text-center">
                             <div class="post-img">
-                                <img src="{{ asset('img/new.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">
+                                {% thumbnail new.image,'big' %}
                             </div>
                             <div class="content">
                                 <h5>{{ new.subject }}</h5>

@@ -3,6 +3,8 @@
 namespace SW\PlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\MediaBundle\Model\MediaInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Disc
@@ -29,11 +31,19 @@ class Disc
     private $title;
 
     /**
-     * @var string
+     * @var \Application\Sonata\MediaBundle\Entity\Media
      *
-     * @ORM\Column(name="image", type="blob", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     */
+    private $imageMin;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
      */
     private $image;
+
 
     /**
      * @var string
@@ -110,13 +120,37 @@ class Disc
     }
 
     /**
-     * Set image
+     * Set imageMin
      *
-     * @param string $image
+     * @param MediaInterface $imageMin
      *
      * @return Disc
      */
-    public function setImage($image)
+    public function setImageMin(MediaInterface $imageMin)
+    {
+        $this->imageMin = $imageMin;
+
+        return $this;
+    }
+
+    /**
+     * Get imageMin
+     *
+     * @return MediaInterface
+     */
+    public function getImageMin()
+    {
+        return $this->imageMin;
+    }
+
+    /**
+     * Set image
+     *
+     * @param MediaInterface $image
+     *
+     * @return Disc
+     */
+    public function setImage(MediaInterface $image)
     {
         $this->image = $image;
 
@@ -126,7 +160,7 @@ class Disc
     /**
      * Get image
      *
-     * @return string
+     * @return MediaInterface
      */
     public function getImage()
     {

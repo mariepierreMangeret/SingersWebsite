@@ -26,6 +26,13 @@ class NewsAdmin extends Admin
                     'required'=> true, 
                     'attr'    => array('style'=>'height:300px;')
                 ))
+                ->add('image', 'sonata_media_type', array(
+                    'provider'   => 'sonata.media.provider.image',
+                    'context'    => 'new',
+                    'required'   => false,
+                    'data_class' => 'Application\Sonata\MediaBundle\Entity\Media',
+                    'label'      => 'Image',
+                ))
             ->end()
             ->with('Date de création', array('class' => 'col-md-9'))
                 ->add('date', 'datetime', array(
@@ -49,6 +56,7 @@ class NewsAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('custom', 'string', array('template' => 'SWPlatformBundle::list_imagefield_custom.html.twig', 'label' => 'Image'))
             ->addIdentifier('subject')
             ->add('date')
         ;

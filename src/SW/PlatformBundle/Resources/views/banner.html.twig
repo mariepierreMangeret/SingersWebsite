@@ -1,0 +1,13 @@
+<!-- start intro section -->
+{% for h in header %}
+    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
+                    {% thumbnail h.imageAdd,'small' %}      
+                </div>
+            </div>
+        </div>
+    </section>
+{% endfor %}
+<!-- end intro section -->

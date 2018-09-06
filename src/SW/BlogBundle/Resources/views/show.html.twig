@@ -7,17 +7,9 @@
 {% block body %}
 	<link rel="stylesheet" href="{{ asset('css/blog_info.css') }}"/>
 
-    <!-- start intro section -->
-    <section class="bg-extra-dark-gray border-bottom border-top" data-overlay-dark="6" data-background="{{ asset('img/banner.png') }}">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-10 center-col text-center last-paragraph-no-margin" style="padding-top: 70px;">
-                    <img src="{{ asset('img/single-min.png') }}" alt="Noemie Beaujean" title="Noemie Beaujean">      
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- end intro section -->
+    {{ render(controller(
+        'SW\\PlatformBundle\\Controller\\PlatformController::bannerAction'
+    )) }}
 
     <div class="row" style="background-color:#eee;">
         <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">

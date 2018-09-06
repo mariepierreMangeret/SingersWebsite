@@ -74,3 +74,9 @@ services:
         arguments: [~, SW\PlatformBundle\Entity\Video, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Video, group: Video }
+
+    admin.header:
+        class: SW\PlatformBundle\Admin\HeaderAdmin
+        arguments: [~, SW\PlatformBundle\Entity\Header, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Header, group: Header }

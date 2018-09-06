@@ -21,6 +21,20 @@ class DiscAdmin extends Admin
                     ->add('urlAmazon', 'text')
                     ->add('urlItunes', 'text')
                     ->add('urlShop', 'text')
+                    ->add('imageMin', 'sonata_media_type', array(
+                    'provider'   => 'sonata.media.provider.image',
+                    'context'    => 'disc',
+                    'required'   => false,
+                    'data_class' => 'Application\Sonata\MediaBundle\Entity\Media',
+                    'label'      => 'Image Min',
+                    ))
+                    ->add('image', 'sonata_media_type', array(
+                    'provider'   => 'sonata.media.provider.image',
+                    'context'    => 'disc',
+                    'required'   => false,
+                    'data_class' => 'Application\Sonata\MediaBundle\Entity\Media',
+                    'label'      => 'Image',
+                    ))
                 ->end()
                 ->with('Categorie', array('class' => 'col-md-9'))
                     ->add('typedisc', 'entity', array(
@@ -50,6 +64,7 @@ class DiscAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('custom', 'string', array('template' => 'SWPlatformBundle::list_imagefield_custom.html.twig', 'label' => 'Image'))
             ->addIdentifier('title')          
         ;
     }
