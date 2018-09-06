@@ -1,3 +1,7 @@
+sw_ecommerce:
+    resource: "@SWEcommerceBundle/Resources/config/routing.yml"
+    prefix:   /
+
 sw_platform:
     resource: "@SWPlatformBundle/Resources/config/routing.yml"
     prefix:   /

@@ -68,6 +68,8 @@ doctrine:
                 mappings:
                     ApplicationSonataMediaBundle: ~
                     SonataMediaBundle: ~
+                    ApplicationSonataClassificationBundle: ~
+                    SonataClassificationBundle: ~
                 dql:
                     string_functions:
                         MONTH: DoctrineExtensions\Query\Mysql\Month
@@ -126,7 +128,7 @@ sonata_media:
                 - sonata.media.provider.vimeo
 
             formats:
-                small: { width: 100 , quality: 70}
+                small: { width: 200 , quality: 70}
                 big:   { width: 500 , quality: 70}
 
         video:
@@ -181,3 +183,10 @@ sonata_media:
         media: Application\Sonata\MediaBundle\Entity\Media
         gallery: Application\Sonata\MediaBundle\Entity\Gallery
         gallery_has_media: Application\Sonata\MediaBundle\Entity\GalleryHasMedia
+
+sonata_classification:
+    class:
+        tag: Application\Sonata\ClassificationBundle\Entity\Tag
+        category: Application\Sonata\ClassificationBundle\Entity\Category
+        collection: Application\Sonata\ClassificationBundle\Entity\Collection
+        context: Application\Sonata\ClassificationBundle\Entity\Context

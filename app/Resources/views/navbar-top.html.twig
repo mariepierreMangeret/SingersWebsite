@@ -3,7 +3,7 @@
     <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_platform_biography' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_platform_biography') }}">Biographie</a></li>
     <li class="nav-item  {% if app.request.attributes.get('_route') == 'sw_platform_discography' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_platform_discography', {'id': 1 }) }}">Discographie</a></li>        
     <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_blog_home' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_blog_home') }}">Blog</a></li>
-    <li class="nav-item {% if app.request.attributes.get('_route') == '#' %}active{% endif %}"><a class="nav-link" href="#">Boutique</a></li>
+    <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_ecommerce_catalog' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_ecommerce_catalog') }}">Boutique</a></li>
     <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_platform_contact' %}active{% endif %}"><a class="nav-link" href="{{ path('sw_platform_contact') }}">Contact</a></li>
 
 	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}

@@ -1,0 +1,7 @@
+sw_ecommerce_catalog:
+    path:     /shop/catalog
+    defaults: { _controller: SWEcommerceBundle:Catalog:index }
+
+sw_ecommerce_product_view:
+    path:     /shop/product/{slug}/{productId}
+    defaults: { _controller: SWEcommerceBundle:Product:view }

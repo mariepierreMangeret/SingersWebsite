@@ -80,3 +80,9 @@ services:
         arguments: [~, SW\PlatformBundle\Entity\Header, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Header, group: Header }
+
+    admin.product:
+        class: SW\EcommerceBundle\Admin\ProductAdmin
+        arguments: [~, SW\EcommerceBundle\Entity\Product, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: product, group: E-commerce } 

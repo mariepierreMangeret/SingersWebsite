@@ -1,0 +1,11 @@
+<div class="post" style="margin:5px;">
+    <div class="content">
+        <div class="post-cont wow fadeInUp" data-wow-duration="0.4s">
+            <a class="product-thumb" href="{{ path('sw_ecommerce_product_view', {'slug': product.slug, 'productId': product.id}) }}">{% media product.image,'small' %}</a>
+        </div>
+        <div class="post-title wow fadeInUp">
+            <h5 class="text-center" style="font-size:16px;"><a href="{{ path('sw_ecommerce_product_view', {'slug': product.slug, 'productId': product.id}) }}">{{ product.name|truncate(28) }}</a></h5>
+            <h5 class="product-price text-center" style="font-size:14px;">{{ product.price }}€</h5>
+        </div>
+    </div>
+</div>
