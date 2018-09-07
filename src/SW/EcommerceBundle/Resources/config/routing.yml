@@ -5,3 +5,25 @@ sw_ecommerce_catalog:
 sw_ecommerce_product_view:
     path:     /shop/product/{slug}/{productId}
     defaults: { _controller: SWEcommerceBundle:Product:view }
+
+sw_ecommerce_shop_basket:
+    path:     /shop/basket
+    defaults: { _controller: SWEcommerceBundle:Basket:index }
+
+sw_ecommerce_shop_basket_add_product:
+    path:     /shop/basket/add-product
+    defaults: { _controller: SWEcommerceBundle:Basket:addProduct }
+
+sw_ecommerce_shop_basket_remove_product:
+    path:     /shop/basket/remove-product/{id}
+    defaults: { _controller: SWEcommerceBundle:Basket:removeProduct }
+    requirements:
+        id: \d+
+
+sw_ecommerce_shop_basket_reset:
+    path:     /shop/basket/reset
+    defaults: { _controller: SWEcommerceBundle:Basket:reset }
+
+sw_ecommerce_shop_basketelement_setquantity_ajax:
+    path:     /shop/basket-element/set-quantity
+    defaults: { _controller: SWEcommerceBundle:BasketElement:setQuantityAjax }

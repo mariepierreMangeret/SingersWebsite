@@ -1,0 +1,117 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Boutique - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<link rel="stylesheet" href="{{ asset('css/shop.css') }}"/>
+
+    {{ render(controller(
+        'SW\\PlatformBundle\\Controller\\PlatformController::bannerAction'
+    )) }}
+
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Boutique</div>
+            <h5 class="margin-10px-bottom font-weight-300">Mon panier</h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
+    </div>
+    
+    {% for message in app.session.flashbag.get('error') %}
+    	<div class="container">
+    		<p class="alert alert-danger alert-dismissible fade show margin-bottom-1x">
+    			<span class="alert-close" data-dismiss="alert"></span>
+    			{{ message }}
+    		</p>
+    	</div>
+    {% endfor %}
+
+	<div class="blogs padding-30px-top padding-30px-bottom">
+		<div class="posts">
+		 	{% set total = 0 %} 		
+		 	<div class="container padding-bottom-3x mb-1" style="background-color:white;">
+				{% if basket.basketElements|length > 0 %}
+					<div class="table-responsive shopping-cart">
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="text-center">{{ 'basket.product_name'|trans }}</th>
+									<th class="text-center">{{ 'basket.quantity'|trans }}</th>
+									<th class="text-center">{{ 'basket.price'|trans }}</th>
+									<th class="text-center"><a class="btn btn-sm btn-outline-danger" href="{{ path('sw_ecommerce_shop_basket_reset') }}" style="padding:0!important;">{{ 'basket.clear'|trans }}</a></th>
+								</tr>
+							</thead>
+
+							<tbody>
+								{% for basketElement in basket.basketElements %}					
+									<tr>
+										<td>
+											<div class="product-item text-center"><a class="product-thumb" href="{{ path('sw_ecommerce_product_view', {'slug': basketElement.product.slug, 'productId': basketElement.product.id}) }}">{% media basketElement.product.image, 'small' %}</a>
+												<div class="post-title wow fadeInUp">
+													<h5 class="text-center" style="font-size:16px;margin-bottom:0!important;"><a href="{{ path('sw_ecommerce_product_view', {'slug': basketElement.product.slug, 'productId': basketElement.product.id}) }}">{{ basketElement.product.name }}</a></h5>
+												</div>
+											</div>
+										</td>
+										<td class="text-center align-middle">
+											<div class="count-input">
+												<select id="{{ basketElement.id }}" class="form-control" onchange="setQuantity(this);" style="width:100px;margin:auto;">
+			                   						{% for i in 1..basketElement.product.stock %}
+			                   							{% if i == basketElement.quantity %}
+			                   								{% set total = total + basketElement.product.price*basketElement.quantity %}
+			                                   				<option selected>{{ i }}</option>
+			                   								}
+			                                   			{% else %}
+			                                   				<option>{{ i }}</option>
+			                                   			{% endif %}
+			                                		{% endfor %}
+												</select>
+											</div>
+										</td>
+										<td class="text-center text-lg text-medium align-middle"><h5 class="product-price" style="font-size:14px;margin-bottom:0!important;">{{ basketElement.product.price }}</h5></td>
+										<td class="text-center align-middle"><a class="remove-from-cart" href="{{ path('sw_ecommerce_shop_basket_remove_product', {'id': basketElement.id}) }}" data-toggle="tooltip" title="Remove item"><i class="fas fa-times"></i></a></td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				{% else %}
+					 <div class="alert alert-info alert-dismissible fade show text-center" style="margin-bottom: 30px;"><span class="alert-close" data-dismiss="alert"></span>{{ 'basket.empty'|trans }}</div>
+				{% endif %}
+				<div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+		 		<div class="shopping-cart-footer">
+					<div class="column text-lg post-title"><h5 class="product-price text-center" style="font-size:16px;color:3C7CDD;">{{ 'basket.total'|trans }}: <span id="total_basket" class="text-medium">{{ total }} €</span></h5></div>
+				</div>
+			</div>
+
+			<!-- retour -->
+			<div class="pagination text-uppercase wow fadeInUp" style="margin-top:30px;">
+		        <ul>
+		            <li>
+		                <a href="{{ path('sw_ecommerce_catalog') }}">Continuer mes achats</a>
+		            </li>
+		        </ul>
+		    </div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+ 	<script type="text/javascript">
+	    function setQuantity(e) {
+	       	var quantity = e.options[e.selectedIndex].value;
+	        var param = "id="+$(e).attr('id')+"&quantity="+quantity;
+ 	        $.ajax({
+	            url: "{{ path('sw_ecommerce_shop_basketelement_setquantity_ajax') }}",
+	            data: param,
+	            type: "POST",
+	            success: function(data) {
+	            	$("#total_basket").html(data["total"]+" €");
+	            }
+	        });
+	    }
+	</script>
+{% endblock %} 

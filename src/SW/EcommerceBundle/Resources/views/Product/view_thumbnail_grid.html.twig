@@ -1,11 +1,23 @@
 <div class="post" style="margin:5px;">
     <div class="content">
+    	{% if product.stock == 0 %}
+            <div class="product-badge text-danger">{{ 'basket.sold_out'|trans }}</div>
+        {% endif %}
         <div class="post-cont wow fadeInUp" data-wow-duration="0.4s">
-            <a class="product-thumb" href="{{ path('sw_ecommerce_product_view', {'slug': product.slug, 'productId': product.id}) }}">{% media product.image,'small' %}</a>
+            <a class="product-thumb" href="{{ path('sw_ecommerce_product_view', {'slug': product.slug, 'productId': product.id}) }}">{% media product.image,'big' %}</a>
         </div>
         <div class="post-title wow fadeInUp">
             <h5 class="text-center" style="font-size:16px;"><a href="{{ path('sw_ecommerce_product_view', {'slug': product.slug, 'productId': product.id}) }}">{{ product.name|truncate(28) }}</a></h5>
             <h5 class="product-price text-center" style="font-size:14px;">{{ product.price }}€</h5>
+            <div class="product-buttons">
+	            {% if product.stock > 0 %}
+	          		<form action="{{ url('sw_ecommerce_shop_basket_add_product') }}" method="POST">
+	            		<button id="add_basket_button_{{product.id}}" type="submit" name="product_id" value="{{product.id}}" class="btn btn-outline-primary btn-sm" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Product" data-toast-message="successfuly added to cart!" {# onclick="addProductToBasket(this);" #}>{{ 'basket.add_product'|trans }}</button>
+	            	</form>
+	            {% else %}
+	                <a class="btn btn-outline-secondary btn-sm" href="{{ path('sw_ecommerce_shop_product_view', {'slug': product.slug, 'productId': product.id}) }}">{{ 'basket.view_details'|trans }}</a>
+	            {% endif %}
+      		</div>
         </div>
     </div>
 </div>

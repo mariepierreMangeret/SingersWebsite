@@ -32,20 +32,34 @@
             <!-- Product Info-->
             <div class="col-md-6 offset-md-1">
                 <div class="padding-top-2x mt-2 hidden-md-up"></div>
+                {% if product.stock == 0 %}
+                    <div class="product-badge-view product-badge text-danger">{{ 'basket.sold_out'|trans }}</div>
+                {% endif %}
                 <span class="h2 d-block">{{ product.price }} €</span>
                 <p>{{ product.description }}</p>
-                <div class="row margin-top-1x">
-                    <div class="col-sm-3">
-                        <div class="form-group">
-                            <label for="quantity">Quantity</label>
-                            <select class="form-control" id="quantity">
-                                {% for i in 1..product.stock %}
-                                    <option>{{ i }}</option>
-                                {% endfor %}
-                            </select>
+                {% if product.stock > 0 %}
+                    <form action="{{ url('sw_ecommerce_shop_basket_add_product') }}" method="POST">
+                        <div class="row margin-top-1x">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="quantity">Quantity</label>
+                                    <select class="form-control" id="quantity" name="product_quantity">
+                                        {% for i in 1..product.stock %}
+                                            <option>{{ i }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                        <hr class="mb-3">
+                        <div class="d-flex flex-wrap justify-content-between">
+                            <div class="sp-buttons mt-2 mb-2 offset-md-7">
+                                <form action="{{ url('sw_ecommerce_shop_basket_add_product') }}" method="POST">
+                                    <button id="add_basket_button_{{product.id}}" type="submit" name="product_id" value="{{product.id}}" class="btn btn-primary" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Product" data-toast-message="successfuly added to cart!" {# onclick="addProductToBasket(this);" #}><i class="icon-bag"></i> {{ 'basket.add_product'|trans }}</button>
+                             </div>
+                        </div>
+                    </form>
+                {% endif %}
             </div>
         </div>
         <!-- Product Tabs-->

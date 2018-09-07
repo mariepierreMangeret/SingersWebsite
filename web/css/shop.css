@@ -30,12 +30,12 @@
       margin-bottom: 5px;
       letter-spacing: 1px; }
     .blog .item .content .author a {
-      color: #F24259; }
+      color: #3C7CDD; }
     .blog .item .content .read-more {
       margin-top: 20px;
       text-decoration: underline; }
       .blog .item .content .read-more:hover {
-        color: #F24259;
+        color: #3C7CDD;
         text-decoration: none; }
     .blog .item .content h5 {
       font-weight: 600;
@@ -259,4 +259,6 @@
   float: right; }
 
 
-
+.post-title a:hover {
+  color:#3C7CDD!important;
+}
