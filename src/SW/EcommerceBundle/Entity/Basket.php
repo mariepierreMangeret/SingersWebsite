@@ -33,6 +33,25 @@ class Basket
      */
     private $customer;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="delivery_address_id", type="integer")
+     */
+    private $deliveryAddressId;
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="delivery_method", type="string", length=255)
+     */
+    private $deliveryMethod;
+     /**
+     * @var float
+     *
+     * @ORM\Column(name="shipping_fee", type="float", scale=2)
+     */
+    private $shippingFee;
+
     public function __construct($customer)
     {
         $this->customer = $customer;
@@ -81,7 +100,7 @@ class Basket
         return $this->basketElements;
     }
 
-    public function getTotal()
+    public function getTotalPrice()
     {
         $total = 0;
         foreach ( $this->getBasketElements() as $basketElement ) {
@@ -112,5 +131,80 @@ class Basket
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * Set deliveryAddressId
+     *
+     * @param integer $deliveryAddressId
+     * @return Basket
+     */
+    public function setDeliveryAddressId($deliveryAddressId)
+    {
+        $this->deliveryAddressId = $deliveryAddressId;
+         return $this;
+    }
+
+    /**
+     * Get deliveryAddressId
+     *
+     * @return integer
+     */
+    public function getDeliveryAddressId()
+    {
+        return $this->deliveryAddressId;
+    }
+
+    /**
+     * Set deliveryMethod
+     *
+     * @param string $deliveryMethod
+     * @return Basket
+     */
+    public function setDeliveryMethod($deliveryMethod)
+    {
+        $this->deliveryMethod = $deliveryMethod;
+         return $this;
+    }
+
+    /**
+     * Get deliveryMethod
+     *
+     * @return string
+     */
+    public function getDeliveryMethod()
+    {
+        return $this->deliveryMethod;
+    }
+
+    /**
+     * Set shippingFee
+     *
+     * @param float $shippingFee
+     * @return Basket
+     */
+    public function setShippingFee($shippingFee)
+    {
+        $this->shippingFee = $shippingFee;
+         return $this;
+    }
+
+    /**
+     * Get shippingFee
+     *
+     * @return float
+     */
+    public function getShippingFee()
+    {
+        return $this->shippingFee;
+    }
+
+    public function getTotalWeight()
+    {
+        $total = 0;
+        foreach ( $this->getBasketElements() as $basketElement ) {
+            $total += $basketElement->getTotalWeight();
+        }
+        return $total;
     }
 }

@@ -66,6 +66,13 @@ class Product
     private $price;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="weight", type="decimal", scale=2, nullable=true)
+     */
+    private $weight;
+
+    /**
      * @var bool|null
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
@@ -246,6 +253,28 @@ class Product
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set weight
+     *
+     * @param string $weight
+     * @return Product
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+         return $this;
+    }
+     
+    /**
+     * Get weight
+     *
+     * @return string 
+     */
+    public function getWeight()
+    {
+        return $this->weight;
     }
 
     /**

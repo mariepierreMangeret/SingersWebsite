@@ -1,0 +1,71 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Boutique - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<link rel="stylesheet" href="{{ asset('css/shop.css') }}"/>
+
+    {{ render(controller(
+        'SW\\PlatformBundle\\Controller\\PlatformController::bannerAction'
+    )) }}
+
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Validation de la commande (2/3)</div>
+            <h5 class="margin-10px-bottom font-weight-300">Mode de livraison</h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
+    </div>
+
+    <div class="blogs padding-30px-top padding-30px-bottom">
+        <div class="posts">
+
+
+            <form action="{{ url('sw_ecommerce_shop_basket_delivery') }}" method="POST">
+                <div class="container padding-bottom-3x mb-1" style="background-color:white;padding-top:20px;">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead class="thead-default">
+                                <tr>
+                                    <th></th>
+                                    <th>{{ 'basket.delivery_method'|trans }}</th>
+                                    <th>{{ 'basket.delivery_time'|trans }}</th>
+                                    <th>{{ 'basket.shipping_fee'|trans }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for shipper, data in deliveryMethods %}
+                                    <tr>
+                                        <td class="align-middle">
+                                            <div class="custom-control custom-radio mb-0">
+                                                <input class="custom-control-input" type="radio" id="{{ shipper }}" name="delivery-method" value="{{ shipper }}" checked>
+                                                <label class="custom-control-label" for="{{ shipper }}"></label>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle"><span class="text-medium">{{ shipper }}</span><br><span class="text-muted text-sm">{{ data['location'] }}</span></td>
+                                        <td class="align-middle">{{ data['delivery_time'] }} {{ 'basket.days'|trans }}</td>
+                                        <td class="align-middle">{{ data['price'] }} €</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- retour -->
+                <div class="pagination text-uppercase wow fadeInUp" style="margin-top:30px;">
+                    <ul>
+                        <li>
+                            <a href="{{ path('sw_ecommerce_shop_basket_delivery_address') }}">Retour</a>
+                            <button class="btn-next" type="submit">Etape suivante</button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %} 

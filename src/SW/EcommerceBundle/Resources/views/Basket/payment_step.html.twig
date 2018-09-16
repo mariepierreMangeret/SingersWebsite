@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}
+    Boutique - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+	<link rel="stylesheet" href="{{ asset('css/shop.css') }}"/>
+
+    {{ render(controller(
+        'SW\\PlatformBundle\\Controller\\PlatformController::bannerAction'
+    )) }}
+
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Validation de la commande (3/3)</div>
+            <h5 class="margin-10px-bottom font-weight-300">Paiement</h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
+        </div>
+    </div>
+
+{% endblock %} 

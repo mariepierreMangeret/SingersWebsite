@@ -262,3 +262,17 @@
 .post-title a:hover {
   color:#3C7CDD!important;
 }
+
+button[class="btn-next"] {
+  background: #fff;
+  padding: 0 18px;
+  line-height: 40px;
+  text-decoration: none;
+  border: 1px solid #dbdbdb;
+  text-transform: uppercase;
+}
+
+button[class="btn-next"]:hover {
+  color: #fff;
+  background-color: #000;
+}

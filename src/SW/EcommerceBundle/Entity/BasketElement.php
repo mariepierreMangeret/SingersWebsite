@@ -137,8 +137,13 @@ class BasketElement
         return $this->basket;
     }
 
-    public function getTotal()
+    public function getTotalPrice()
     {
         return bcmul($this->product->getPrice(), $this->quantity);
+    }
+
+    public function getTotalWeight()
+    {
+        return bcmul($this->product->getWeight(), $this->quantity);
     }
 }

@@ -121,4 +121,48 @@ use SW\EcommerceBundle\Form\UserAdressType;
         ));
     }
 
+    public function deliveryStepAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $basket = $em->getRepository('SWEcommerceBundle:Basket')->findOneByUser($this->get('security.token_storage')->getToken()->getUser());  
+
+        $laposteCurl = curl_init();
+        curl_setopt($laposteCurl, CURLOPT_URL, 'https://api.laposte.fr/tarifenvoi/v1?type=colis&poids='.$basket->getTotalWeight());
+        curl_setopt($laposteCurl, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+        curl_setopt($laposteCurl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($laposteCurl, CURLOPT_HTTPHEADER, array(
+            'X-Okapi-Key: '.$this->container->getParameter('X-Okapi-Key')
+        ));
+
+
+        $laposteApiResponse = curl_exec($laposteCurl);
+        curl_close($laposteCurl);
+        $laposteApiResponse = json_decode($laposteApiResponse);
+        $deliveryMethods = array();
+
+        $deliveryMethods["Laposte"] = array(
+            "price"         =>  $laposteApiResponse[1]->price,
+            "location"      =>  $this->get('translator')->trans('basket.only_france'),
+            "delivery_time" =>  '2 - 4',
+        );
+
+        if ( $request->request->get('delivery-method') ) {
+            $basket->setDeliveryMethod($request->request->get('delivery-method'));
+            $basket->setShippingFee($deliveryMethods[$request->request->get('delivery-method')]['price']);
+            $em->persist($basket);
+            $em->flush();
+            
+            return new RedirectResponse($this->generateUrl('sw_ecommerce_shop_basket_payment'));
+        }
+
+        return $this->render('SWEcommerceBundle:Basket:delivery_step.html.twig', [
+            'deliveryMethods'   => $deliveryMethods,
+        ]);
+    }
+
+    public function paymentStepAction(Request $request)
+    {
+        return $this->render('SWEcommerceBundle:Basket:payment_step.html.twig');
+    }
 } 

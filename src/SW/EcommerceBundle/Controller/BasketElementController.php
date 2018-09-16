@@ -25,7 +25,7 @@ class BasketElementController extends Controller
         $em->flush();
         
         $response = new Response();
-        $response->setContent(json_encode(array("success"=>true, "total"=>$basketElement->getBasket()->getTotal())));
+        $response->setContent(json_encode(array("success"=>true, "total"=>$basketElement->getBasket()->getTotalPrice())));
         $response->headers->set('Content-Type', 'application/json');
         
         return $response;

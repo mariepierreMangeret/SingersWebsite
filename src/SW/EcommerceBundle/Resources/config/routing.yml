@@ -31,3 +31,11 @@ sw_ecommerce_shop_basketelement_setquantity_ajax:
 sw_ecommerce_shop_basket_delivery_address:
     path:     /shop/basket/step/delivery/address
     defaults: { _controller: SWEcommerceBundle:Basket:deliveryAddressStep }
+
+sw_ecommerce_shop_basket_delivery:
+    path:     /shop/basket/step/delivery
+    defaults: { _controller: SWEcommerceBundle:Basket:deliveryStep }
+
+sw_ecommerce_shop_basket_payment:
+    path:     /shop/basket/step/payment
+    defaults: { _controller: SWEcommerceBundle:Basket:paymentStep }
