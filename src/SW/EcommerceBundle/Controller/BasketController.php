@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use SW\EcommerceBundle\Entity\Customer;
 use SW\EcommerceBundle\Entity\Basket;
 use SW\EcommerceBundle\Entity\BasketElement;
+use SW\UserBundle\Entity\User;
+use SW\EcommerceBundle\Form\UserAdressType;
 
  class BasketController extends Controller
 {
@@ -96,4 +98,27 @@ use SW\EcommerceBundle\Entity\BasketElement;
 
         return new RedirectResponse($this->generateUrl('sw_ecommerce_shop_basket'));
     }
+
+     public function deliveryAddressStepAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $form = $this->createForm('SW\EcommerceBundle\Form\UserAdressType', $user);
+
+        if ($form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+            $request->getSession()->getFlashBag()->add('notice', 'Modification bien enregistré');
+
+            return $this->redirect($this->generateUrl('sw_ecommerce_shop_basket_delivery_address', array('id' => $user->getId())));
+        }
+
+
+        return $this->render('SWEcommerceBundle:Basket:delivery_address_step.html.twig', array(
+            'form'  => $form->createView(),
+        ));
+    }
+
 } 

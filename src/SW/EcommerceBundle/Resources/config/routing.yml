@@ -27,3 +27,7 @@ sw_ecommerce_shop_basket_reset:
 sw_ecommerce_shop_basketelement_setquantity_ajax:
     path:     /shop/basket-element/set-quantity
     defaults: { _controller: SWEcommerceBundle:BasketElement:setQuantityAjax }
+
+sw_ecommerce_shop_basket_delivery_address:
+    path:     /shop/basket/step/delivery/address
+    defaults: { _controller: SWEcommerceBundle:Basket:deliveryAddressStep }

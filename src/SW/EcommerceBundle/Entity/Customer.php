@@ -1,11 +1,8 @@
 <?php
-
-namespace SW\EcommerceBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
+ namespace SW\EcommerceBundle\Entity;
+ use Doctrine\ORM\Mapping as ORM;
 use SW\UserBundle\Entity\User;
-
-/**
+ /**
  * Customer
  *
  * @ORM\Table(name="sw_customer")
@@ -20,9 +17,10 @@ class Customer
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
+
     private $id;
 
-    /**
+     /**
      * @ORM\ManyToOne(targetEntity="SW\UserBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -32,7 +30,7 @@ class Customer
         $this->user = $user;
     }
 
-    /**
+     /**
      * Get id.
      *
      * @return int
@@ -42,25 +40,26 @@ class Customer
         return $this->id;
     }
 
-    /**
+     /**
      * Set user.
      *
      * @param \SW\UserBundle\Entity\User $user
      *
      * @return Customer
      */
+
     public function setUser(\SW\UserBundle\Entity\User $user)
     {
         $this->user = $user;
-
-        return $this;
+         return $this;
     }
 
-    /**
+     /**
      * Get user.
      *
      * @return \SW\UserBundle\Entity\User
      */
+
     public function getUser()
     {
         return $this->user;
