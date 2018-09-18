@@ -39,3 +39,7 @@ sw_ecommerce_shop_basket_delivery:
 sw_ecommerce_shop_basket_payment:
     path:     /shop/basket/step/payment
     defaults: { _controller: SWEcommerceBundle:Basket:paymentStep }
+
+sw_ecommerce_shop_basket_transform_into_order:
+    path:     /shop/basket/transform/into/order/{reference}
+    defaults: { _controller: SWEcommerceBundle:Basket:transformIntoOrder } 

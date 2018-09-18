@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use SW\EcommerceBundle\Entity\Customer;
 use SW\EcommerceBundle\Entity\Basket;
 use SW\EcommerceBundle\Entity\BasketElement;
+use SW\EcommerceBundle\Entity\Order;
 use SW\UserBundle\Entity\User;
 use SW\EcommerceBundle\Form\UserAdressType;
 
@@ -82,7 +83,7 @@ use SW\EcommerceBundle\Form\UserAdressType;
         return new RedirectResponse($this->generateUrl('sw_ecommerce_shop_basket'));
     }
 
-    public function resetAction(Request $request)
+    public function resetAction()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -163,6 +164,48 @@ use SW\EcommerceBundle\Form\UserAdressType;
 
     public function paymentStepAction(Request $request)
     {
-        return $this->render('SWEcommerceBundle:Basket:payment_step.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $basket = $em->getRepository('SWEcommerceBundle:Basket')->findOneByUser($this->get('security.token_storage')->getToken()->getUser());
+
+        return $this->render('SWEcommerceBundle:Basket:payment_step.html.twig', array(
+            'basket'            => $basket,
+            'user'              => $user,
+        ));
+    }
+
+    public function transformIntoOrderAction(Request $request, $reference)
+    {
+        $em = $this->getDoctrine()->getManager();
+        
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        $customer = $em->getRepository('SWEcommerceBundle:Customer')->findOneByUser($user);
+        $basket = $em->getRepository('SWEcommerceBundle:Basket')->findOneByCustomer($customer);
+        
+        $order = new Order();
+
+        $order->setReference($reference);
+        $order->setDeliveryMethod($basket->getDeliveryMethod());
+        $order->setStatus(Order::STATUS_VALIDATED);
+        $order->setUsername($customer->getUser()->getUsername());
+        $order->setTotal($basket->getTotalPrice());
+        $order->setDeliveryCost($basket->getShippingFee());
+        
+        $order->setShippingLastname($user->getLastname());
+        $order->setShippingFirstname($user->getFirstname());
+        $order->setShippingPhone($user->getPhone());
+        $order->setShippingAdress($user->getAdress());
+        $order->setShippingCity($user->getCity());
+        $order->setShippingPostalcode($user->getPostalcode());
+        $order->setShippingCountry($user->getCountry());
+        
+        $order->setCustomer($customer);
+        $em->persist($order);
+        $em->flush();
+
+        $this-> resetAction();
+        
+        return $this->render('SWEcommerceBundle:Basket:confirm_payment.html.twig');
     }
 } 

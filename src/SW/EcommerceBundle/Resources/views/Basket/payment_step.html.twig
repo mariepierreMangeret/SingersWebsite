@@ -20,4 +20,159 @@
         </div>
     </div>
 
+    <div class="blogs padding-30px-top padding-30px-bottom">
+        <div class="posts">
+            <div class="container padding-bottom-3x mb-1" style="background-color:white;">
+                <div class="row">
+                    <div class="col-xl-9 col-lg-8">
+                        <div class="table-responsive shopping-cart">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">{{ 'basket.product_name'|trans }}</th>
+                                        <th class="text-center">{{ 'basket.price'|trans }}</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for basketElement in basket.basketElements %}
+                                        <tr>
+                                            <td>
+                                                <div class="product-item text-center"><a class="product-thumb" href="{{ path('sw_ecommerce_product_view', {'slug': basketElement.product.slug, 'productId': basketElement.product.id}) }}">{% media basketElement.product.image, 'small' %}</a>
+                                                    <div class="product-info wow fadeInUp">
+                                                        <h5 class="text-center" style="font-size:16px;margin-bottom:0!important;"><a href="{{ path('sw_ecommerce_product_view', {'slug': basketElement.product.slug, 'productId': basketElement.product.id}) }}">{{ basketElement.product.name }} <small>x {{ basketElement.quantity }}</small></a></h5>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-center align-middle">{{ basketElement.product.price * basketElement.quantity }} €</td>
+                                            <td class="text-center align-middle"><a class="btn btn-outline-primary btn-sm" href="{{ path('sw_ecommerce_shop_basket') }}">{{ 'basket.edit'|trans }}</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="shopping-cart-footer"></div>
+                        <div class="row padding-top-1x mt-3">
+                            <div class="col-sm-5 margin-bottom-1x">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title">{{ 'basket.shipping_address'|trans }}</h4>
+                                        <p class="card-text">
+                                            <ul class="list-unstyled">
+                                                <li>{{ user.getLastname() }} {{ user.getFirstname() }}</li>
+                                                <li>{{ user.getAdress() }}</li>
+                                                <li>{{ user.getCity() }}, {{ user.getPostalcode() }}</li>
+                                                <li>{{ user.getCountry() }}</li>
+                                                <li>{{ 'basket.phone'|trans }} : {{ user.getPhone() }}</li>
+                                            </ul>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4">
+                        <aside class="sidebar">
+                            <div class="padding-top-2x hidden-lg-up"></div>
+                            <section class="widget widget-order-summary">
+                                <h3 class="widget-title">{{ 'basket.order_summary'|trans }}</h3>
+                                <table class="table">
+                                    <tr>
+                                        <td>{{ 'basket.items'|trans }} :</td>
+                                        <td class="text-medium">{{ basket.getTotalPrice() }} €</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ 'basket.shipping_fee'|trans }} :</td>
+                                        <td class="text-medium">{{ basket.getShippingFee() }} €</td>
+                                    </tr>
+                                    <tr id="cart_total">
+                                        <td>{{ 'basket.total'|trans }} :</td>
+                                        <td class="text-lg text-medium">{{ basket.getTotalPrice() + basket.getShippingFee() }} €</td>
+                                    </tr>
+                                </table>
+                                <div id="paypal-button-container"></div>
+                            </section>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+    <script>
+        var amount = {
+            total: '{{ basket.getTotalPrice() + basket.getShippingFee() }}',
+            currency: 'EUR',
+            details: {
+                subtotal: '{{ basket.getTotalPrice() }}',
+                shipping: '{{ basket.getShippingFee() }}'
+            }
+        };
+        var items = [];
+        {% for basketElement in basket.getBasketElements() %}
+            items.push({
+                name: "{{ basketElement.product.getName() }}",
+                quantity: "{{ basketElement.getQuantity() }}",
+                price: "{{ basketElement.getProduct().getPrice() }}",
+                sku: "{{ basketElement.getProduct().getId() }}",
+                currency: "EUR",
+            });
+        {% endfor %}
+        var shippingAddress = {
+            recipient_name: "{{ user.getFirstname() }}"+" {{ user.getLastname() }}",
+            line1: "{{ user.getAdress() }}",
+            city: "{{ user.getCity() }}",
+            country_code: "{{ user.getCountry() }}",
+            postal_code: "{{ user.getPostalcode() }}",
+            phone: "{{ user.getPhone() }}"
+        };
+        paypal.Button.render({
+            env: 'sandbox',
+            style: {
+                layout: 'vertical',
+                size:   'medium',
+                shape:  'rect',
+                color:  'gold'
+            },
+            funding: {
+                allowed: [ paypal.FUNDING.CARD, paypal.FUNDING.CREDIT ],
+                disallowed: [ ]
+            },
+            client: {
+                sandbox:    "{{ client_id_paypal }}",
+                production: '<insert production client id>'
+            },
+            payment: function(data, actions) {
+                return actions.payment.create({
+                    transactions: [{
+                        amount: amount,
+                        description: 'The payment transaction description.',
+                        custom: '90048630024435',
+                  //invoice_number: '12345', Insert a unique invoice number
+                  payment_options: {
+                    allowed_payment_method: 'INSTANT_FUNDING_SOURCE'
+                  },
+                  soft_descriptor: 'ECHI5786786',
+                  item_list: {
+                    items: items,
+                    shipping_address: shippingAddress
+                  }
+              }],
+              note_to_payer: 'Contact us for any questions on your order.'
+            });
+            },
+            onAuthorize: function(data, actions) {
+                return actions.payment.execute().then(function() {
+                    window.location.replace("{{ path('sw_ecommerce_shop_basket_transform_into_order', {'reference': 'reference_value'}) }}".replace("reference_value", data.orderID));
+                });
+            }
+        }, '#paypal-button-container');
+    </script>
+
 {% endblock %} 

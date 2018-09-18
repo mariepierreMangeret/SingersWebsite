@@ -104,7 +104,7 @@ class Basket
     {
         $total = 0;
         foreach ( $this->getBasketElements() as $basketElement ) {
-            $total += $basketElement->getTotal();
+            $total += $basketElement->getTotalPrice();
         }
          return $total;
     }
