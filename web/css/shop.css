@@ -276,3 +276,15 @@ button[class="btn-next"]:hover {
   color: #fff;
   background-color: #000;
 }
+
+.btn-outline-danger:hover {
+  background: #3C7CDD!important;
+  color: #fff!important;
+  border-color: #3C7CDD!important;
+}
+
+.btn-outline-danger {
+  background: #3C7CDD!important;
+  color: #fff!important;
+  border-color: #3C7CDD!important;
+}

@@ -14,9 +14,9 @@ class BasketElementController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $basketElementId = $this->get('request')->request->get('id');
+        $basketElementId = $request->request->get('id');
 
-        $quantity = $this->get('request')->request->get('quantity');
+        $quantity = $request->request->get('quantity');
 
         $basketElement = $em->getRepository('SWEcommerceBundle:BasketElement')->find($basketElementId);
 

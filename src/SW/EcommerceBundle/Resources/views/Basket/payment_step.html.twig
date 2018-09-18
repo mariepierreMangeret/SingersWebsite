@@ -58,7 +58,7 @@
                             <div class="col-sm-5 margin-bottom-1x">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">{{ 'basket.shipping_address'|trans }}</h4>
+                                        <h4 class="text-center" style="font-size:16px;color:#3C7CDD;">{{ 'basket.shipping_address'|trans }}</h4>
                                         <p class="card-text">
                                             <ul class="list-unstyled">
                                                 <li>{{ user.getLastname() }} {{ user.getFirstname() }}</li>
@@ -77,7 +77,7 @@
                         <aside class="sidebar">
                             <div class="padding-top-2x hidden-lg-up"></div>
                             <section class="widget widget-order-summary">
-                                <h3 class="widget-title">{{ 'basket.order_summary'|trans }}</h3>
+                                <h3 class="text-center" style="font-size:16px;color:#3C7CDD;">{{ 'basket.order_summary'|trans }}</h3>
                                 <table class="table">
                                     <tr>
                                         <td>{{ 'basket.items'|trans }} :</td>
@@ -97,6 +97,14 @@
                         </aside>
                     </div>
                 </div>
+            </div>
+            <!-- retour -->
+            <div class="pagination text-uppercase wow fadeInUp" style="margin-top:30px;">
+                <ul>
+                    <li>
+                        <a href="{{ path('sw_ecommerce_shop_basket_delivery') }}">Retour</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
