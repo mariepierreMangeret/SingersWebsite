@@ -41,7 +41,9 @@
                                     </ul>
                                 </div>
                                 <div class="post-cont wow fadeInUp" data-wow-duration="0.4s">
-                                    <p>{{ news.message|nl2br}}</p>
+                                    {% autoescape %}
+                                        <p>{{ news.message|raw}}</p>
+                                    {% endautoescape %}
                                 </div>
                             </div>
                         </div>

@@ -47,8 +47,10 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <div class="post-cont wow fadeInUp" data-wow-duration="0.4s">
-                                        <p>{{ blog.blog|slice(0, 250) ~ '...' }}</p>
+                                    <div class="post-cont wow fadeInUp" data-wow-duration="0.4s" style="height:70px;overflow:hidden;">
+                                        {% autoescape %}
+                                            <p>{{ blog.blog|raw }}</p>
+                                        {% endautoescape %}
                                     </div>
                                     <a href="{{ path('sw_blog_show', {'page': 1, 'id': blog.id}) }}" class="btn wow fadeInUp" data-wow-duration="0.6s">Lire la suite</a>
                                 </div>

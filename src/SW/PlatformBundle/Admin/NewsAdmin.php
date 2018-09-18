@@ -22,7 +22,7 @@ class NewsAdmin extends Admin
         $formMapper
             ->with('Nouveautés', array('class' => 'col-md-9'))
                 ->add('subject', 'text')
-                ->add('message', 'textarea', array(
+                ->add('message', 'ckeditor', array(
                     'required'=> true, 
                     'attr'    => array('style'=>'height:300px;')
                 ))

@@ -23,7 +23,7 @@ class BlogPostAdmin extends Admin
             ->tab('Article')
                 ->with('Content', array('class' => 'col-md-9'))
                     ->add('title', 'text')
-                    ->add('blog', null, array(
+                    ->add('blog', 'ckeditor', array(
                         'required' => true, 
                         'attr'     => array('style'=>'height:300px;')
                     ))

@@ -29,7 +29,7 @@
                         <div class="pagination text-uppercase wow fadeInUp" style="margin-bottom:30px;">
                             <ul>
                                 <li>
-                                    <a href="{{ path('sw_platform_news') }}">Retour</a>
+                                    <a href="{{ path('sw_blog_home') }}">Retour</a>
                                 </li>
                             </ul>
                         </div>
@@ -47,7 +47,9 @@
                                     </ul>
                                 </div>
                                 <div class="post-cont wow fadeInUp" data-wow-duration="0.4s">
-                                    <p>{{ blog.blog }}</p>
+                                    {% autoescape %}
+                                        <p>{{ blog.blog|raw }}</p>
+                                    {% endautoescape %}
                                 </div>
                             </div>
                         </div>

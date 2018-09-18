@@ -61,7 +61,7 @@ class BlogController extends Controller {
     }
 
     public function showAction($id, $page, Request $request) {
-        if ($page < 1) {
+        if (intval($page) < 1) {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
 
@@ -74,6 +74,8 @@ class BlogController extends Controller {
             ->myComments($id, $page, $nbPerPage);
 
         $nbPages = ceil(count($comments)/$nbPerPage);
+
+        $nbPages = $nbPages == 0 ? 1: $nbPages;
 
         if ($page > $nbPages) {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");

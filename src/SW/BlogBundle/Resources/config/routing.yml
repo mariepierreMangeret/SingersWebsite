@@ -19,7 +19,7 @@ sw_blog_archive:
 sw_blog_show:
     path:  /blog-info/{id}/{page}
     defaults: { 
-      _controller: SWBlogBundle:Blog:show  }
+      _controller: SWBlogBundle:Blog:show, page: 1  }
     requirements:
         id: \d+
         page: \d*   

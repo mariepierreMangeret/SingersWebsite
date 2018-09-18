@@ -41,6 +41,8 @@ twig:
     strict_variables: '%kernel.debug%'
     globals:
         client_id_paypal: "%client_id_paypal%"
+    form_themes:
+        - '@SonataFormatter/Form/formatter.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -198,3 +200,42 @@ sonata_classification:
         category: Application\Sonata\ClassificationBundle\Entity\Category
         collection: Application\Sonata\ClassificationBundle\Entity\Collection
         context: Application\Sonata\ClassificationBundle\Entity\Context
+
+sonata_formatter:
+    default_formatter: text
+    formatters:
+        markdown:
+            service: sonata.formatter.text.markdown
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig #keep this commented unless you are using media bundle.
+
+
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+
+        richhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+        #        - sonata.media.formatter.twig
+
+
+        twig:
+            service: sonata.formatter.text.twigengine
+            extensions: [] # Twig formatter cannot have extensions
