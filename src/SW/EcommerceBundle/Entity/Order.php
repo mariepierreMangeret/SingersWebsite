@@ -141,6 +141,11 @@ class Order
      */
     private $customer;
 
+    /**
+     * @ORM\OneToMany(targetEntity="SW\EcommerceBundle\Entity\OrderElement", cascade={"persist"}, mappedBy="order")
+     */
+    private $orderElements;
+
     public function __construct()
     {
         $this->updatedAt = new \Datetime();
@@ -507,5 +512,38 @@ class Order
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * Add orderElements
+     *
+     * @param \SW\EcommerceBundle\Entity\OrderElement $orderElements
+     * @return Order
+     */
+    public function addOrderElement(\SW\EcommerceBundle\Entity\OrderElement $orderElements)
+    {
+        $this->orderElements[] = $orderElements;
+         $orderElements->setOrder($this);
+         return $this;
+    }
+
+    /**
+     * Remove orderElements
+     *
+     * @param \SW\EcommerceBundle\Entity\OrderElement $orderElements
+     */
+    public function removeOrderElement(\SW\EcommerceBundle\Entity\OrderElement $orderElements)
+    {
+        $this->orderElements->removeElement($orderElements);
+    }
+
+    /**
+     * Get orderElements
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getOrderElements()
+    {
+        return $this->orderElements;
     }
 }

@@ -12,6 +12,7 @@ use SW\EcommerceBundle\Entity\Customer;
 use SW\EcommerceBundle\Entity\Basket;
 use SW\EcommerceBundle\Entity\BasketElement;
 use SW\EcommerceBundle\Entity\Order;
+use SW\EcommerceBundle\Entity\OrderElement;
 use SW\UserBundle\Entity\User;
 use SW\EcommerceBundle\Form\UserAdressType;
 
@@ -201,11 +202,19 @@ use SW\EcommerceBundle\Form\UserAdressType;
         $order->setShippingCountry($user->getCountry());
         
         $order->setCustomer($customer);
+
+        foreach( $basket->getBasketElements() as $basketElement ) {
+            $orderElement = new OrderElement();
+            $orderElement->setProduct($basketElement->getProduct());
+            $orderElement->setQuantity($basketElement->getQuantity());
+            $order->addOrderElement($orderElement);
+        }
+
         $em->persist($order);
         $em->flush();
 
         $this-> resetAction();
         
-        return $this->render('SWEcommerceBundle:Basket:confirm_payment.html.twig');
+        return new RedirectResponse($this->generateUrl('sw_ecommerce_shop_user_order'));
     }
 } 

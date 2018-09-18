@@ -23,7 +23,19 @@
 
     <!-- start contact -->
     <div class="blogs padding-30px-bottom">
-        <div class="col-lg-8 center-col padding-20px-top">
+        <div class="col-lg-8 center-col padding-20px-top posts">
+
+            <div class="pagination text-uppercase wow fadeInUp" style="margin-bottom:30px;">
+                <ul>
+                    <li class="nav-item {% if app.request.attributes.get('_route') == 'sw_platform_profile' %}active-page{% endif %}">
+                        <a href="{{ path('sw_platform_profile', {'id': app.user.id }) }}">Mon profil</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('sw_ecommerce_shop_user_order') }}">Mes commandes</a>
+                    </li>
+                </ul>
+            </div>
+
             <div class="sm-padding-50px-tb sm-no-padding-lr" style="padding:30px;background-color:white;margin-bottom:30px;">
                 {% for message in app.session.flashbag.get('notice') %}
                     <p class="alert alert-success">{{ message }}</p> 
