@@ -5,6 +5,7 @@ namespace SW\UserBundle\Entity;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
  * @ORM\Table(name="sw_user")
@@ -78,9 +79,9 @@ class User extends BaseUser
     private $phone;
 
     /**
-     * @var string
+     * @var \Application\Sonata\MediaBundle\Entity\Media
      *
-     * @ORM\Column(name="image", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
      */
     private $image;
 
@@ -142,11 +143,11 @@ class User extends BaseUser
     /**
      * Set image
      *
-     * @param string $image
+     * @param MediaInterface $image
      *
      * @return User
      */
-    public function setImage($image)
+    public function setImage(MediaInterface $image)
     {
         $this->image = $image;
 
@@ -156,7 +157,7 @@ class User extends BaseUser
     /**
      * Get image
      *
-     * @return string
+     * @return MediaInterface
      */
     public function getImage()
     {

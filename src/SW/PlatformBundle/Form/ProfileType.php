@@ -26,6 +26,13 @@ class ProfileType extends AbstractType
             ->add('city')
             ->add('country')
             ->add('phone')
+            ->add('image', 'sonata_media_type', array(
+                'provider'   => 'sonata.media.provider.image',
+                'context'    => 'profil',
+                'required'   => false,
+                'data_class' => 'Application\Sonata\MediaBundle\Entity\Media',
+                'label'      => 'Image',
+            ))
         ;
     }
 

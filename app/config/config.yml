@@ -162,6 +162,12 @@ sonata_media:
                 small: { width: 200 , quality: 95}
                 big:   { width: 286 , quality: 95}
 
+        profil:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 150 , quality: 95}
+
     cdn:
         server:
             path: /SingersWebsite/web/uploads/media # http://media.sonata-project.org/

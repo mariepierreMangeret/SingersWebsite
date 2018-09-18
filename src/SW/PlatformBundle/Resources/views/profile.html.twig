@@ -40,7 +40,11 @@
                             <div class="col-lg-4">
                                 <aside class="user-info-wrapper">
                                   <div class="user-info wow fadeInUp">
-                                    <div class="user-avatar text-center"><a class="edit-avatar" href="#"></a><img src="{{ asset('img/cd1.png') }}" alt="User" style="height:150px;"></div>
+                                    {{ form_label(form.image, "Photo :", {'label_attr': {'class': 'col-md-3 control-label'}}) }}
+                                    {% media app.user.image,'small' %}
+                                    {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+                                    {{ form_errors(form.image) }}
+
                                   </div>
                                 </aside>
                             </div>

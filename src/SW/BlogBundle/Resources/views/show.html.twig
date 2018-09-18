@@ -61,7 +61,7 @@
                             {% for comment in comments%}
                                 <div class="comment-box wow fadeInLeft">
                                     <div class="author-thumb">
-                                        <img src="{{ asset(['img/', comment.getUser().getImage()]|join) }}" alt="" class="rounded-circle width-85 xs-width-100">
+                                        {% media comment.user.image,'small' with {'class': 'rounded-circle width-85 xs-width-100'} %}
                                     </div>
                                     <div class="comment-info">
                                         <h6>{{ comment.user|upper }} | Le <span>{{ comment.created|date('m/d/Y') }}</span> à <span>{{ comment.created|date('H:i:s') }}</span></h6>
