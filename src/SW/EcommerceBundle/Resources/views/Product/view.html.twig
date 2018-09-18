@@ -12,65 +12,64 @@
         'SW\\PlatformBundle\\Controller\\PlatformController::bannerAction'
     )) }}
 
-    <div class="page-title">
-        <div class="container">
-            <div class="column">
-              <h5>{{ product.name }}</h5>
-            </div>
+    <div class="row" style="background-color:#eee;">
+        <div class="col-12 center-col  margin-20px-top  text-center wow fadeInUp">
+            <div class="alt-font margin-5px-bottom text-uppercase text-small letter-spacing-1" style="color:#3C7CDD;">Boutique</div>
+            <h5 class="margin-10px-bottom font-weight-300">Fiche produit</h5>
+            <div class="separator-line-horrizontal-medium-light2 bg-pink center-col"></div>
         </div>
     </div>
-     <div class="container padding-bottom-3x mb-1">
-        <div class="row">
-          <!-- Poduct Gallery-->
-            <div class="col-md-4 offset-md-1">
-                <div class="product-gallery">
-                    <div class="product-carousel owl-carousel">
-                        <div data-hash="one">{% media product.image,'reference' %}</div>
+
+    <div class="blogs padding-30px-top padding-30px-bottom">
+        <div class="posts">
+            <div class="container padding-bottom-3x mb-1" style="background-color:white;padding-top:20px;">
+                <div class="page-title">
+                    <div class="container">
+                        <div class="column">
+                          <h5 style="font-size:20px;color:#3C7CDD;">{{ product.name }}</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- Product Info-->
-            <div class="col-md-6 offset-md-1">
-                <div class="padding-top-2x mt-2 hidden-md-up"></div>
-                {% if product.stock == 0 %}
-                    <div class="product-badge-view product-badge text-danger">{{ 'basket.sold_out'|trans }}</div>
-                {% endif %}
-                <span class="h2 d-block">{{ product.price }} €</span>
-                <p>{{ product.description }}</p>
-                {% if product.stock > 0 %}
-                    <form action="{{ url('sw_ecommerce_shop_basket_add_product') }}" method="POST">
-                        <div class="row margin-top-1x">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="quantity">Quantity</label>
-                                    <select class="form-control" id="quantity" name="product_quantity">
-                                        {% for i in 1..product.stock %}
-                                            <option>{{ i }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
+                 <div class="container padding-bottom-3x mb-1">
+                    <div class="row">
+                      <!-- Poduct Gallery-->
+                        <div class="col-md-4 offset-md-1">
+                            <div class="product-gallery">
+                                <div data-hash="one">{% media product.image,'reference' %}</div>
                             </div>
                         </div>
-                        <hr class="mb-3">
-                        <div class="d-flex flex-wrap justify-content-between">
-                            <div class="sp-buttons mt-2 mb-2 offset-md-7">
+                        <!-- Product Info-->
+                        <div class="col-md-6 offset-md-1">
+                            <div class="padding-top-2x mt-2 hidden-md-up"></div>
+                            {% if product.stock == 0 %}
+                                <div class="product-badge-view product-badge text-danger">{{ 'basket.sold_out'|trans }}</div>
+                            {% endif %}
+                            <span class="h2 d-block" style="font-size:20px;color:#3C7CDD;">{{ product.price }} €</span>
+                            <p>{{ product.description }}</p>
+                            {% if product.stock > 0 %}
                                 <form action="{{ url('sw_ecommerce_shop_basket_add_product') }}" method="POST">
-                                    <button id="add_basket_button_{{product.id}}" type="submit" name="product_id" value="{{product.id}}" class="btn btn-primary" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Product" data-toast-message="successfuly added to cart!" {# onclick="addProductToBasket(this);" #}><i class="icon-bag"></i> {{ 'basket.add_product'|trans }}</button>
-                             </div>
+                                    <div class="row margin-top-1x">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="quantity">Quantity</label>
+                                                <select class="form-control" id="quantity" name="product_quantity">
+                                                    {% for i in 1..product.stock %}
+                                                        <option>{{ i }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-3">
+                                    <div class="d-flex flex-wrap justify-content-between">
+                                        <div class="text-center margin-30px-bottom">
+                                            <form action="{{ url('sw_ecommerce_shop_basket_add_product') }}" method="POST">
+                                                <button id="add_basket_button_{{product.id}}" type="submit" name="product_id" value="{{product.id}}" class="btn btn-primary" data-toast data-toast-type="success" data-toast-position="topRight" data-toast-icon="icon-circle-check" data-toast-title="Product" data-toast-message="successfuly added to cart!"> {{ 'basket.add_product'|trans }}</button>
+                                         </div>
+                                    </div>
+                                </form>
+                            {% endif %}
                         </div>
-                    </form>
-                {% endif %}
-            </div>
-        </div>
-        <!-- Product Tabs-->
-        <div class="row padding-top-3x mb-3">
-            <div class="col-lg-10 offset-lg-1">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item"><a class="nav-link active" href="#description" data-toggle="tab" role="tab">Description</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane fade show active" id="description" role="tabpanel">
-                        <p>{{ product.description }}</p>
                     </div>
                 </div>
             </div>
